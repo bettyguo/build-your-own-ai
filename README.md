@@ -138,6 +138,7 @@ _Attention to a full small LM._
 **What you'll understand after:** Why encoder models still win on classification and retrieval — and what they cannot do that decoders can.
 
 - [**Python**: _Masked Language Model (MLM)_](https://nn.labml.ai/transformers/mlm/index.html) — labml.ai · written · free
+- [**Python**: _Building BERT with PyTorch from scratch_](https://coaxsoft.com/blog/building-bert-with-pytorch-from-scratch) — COAX Software · written · free
 
 #### Mixture-of-Experts block <sub>★★★ · weekend</sub>
 
@@ -145,7 +146,8 @@ _Attention to a full small LM._
 
 **What you'll understand after:** How frontier models scale parameter count cheaply at inference, and why MoE training is notoriously fiddly.
 
-- [**Python**: _mixture-of-experts_](https://github.com/lucidrains/mixture-of-experts) — Phil Wang (lucidrains) · code · free
+- [**Python**: _st-moe-pytorch_](https://github.com/lucidrains/st-moe-pytorch) — Phil Wang (lucidrains) · code · free
+- [**Python**: _mixture-of-experts (Shazeer-style)_](https://github.com/lucidrains/mixture-of-experts) — Phil Wang (lucidrains) · code · free
 
 #### State-space / Mamba-style block <sub>★★★ · weekend</sub>
 
@@ -461,8 +463,11 @@ tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scrat
 
 - Scheduled weekly link-check via CI.
 - Quarterly audit of the verification log.
-- Currently: **40 build targets** · **39 guides** ·
+- Currently: **40 build targets** · **41 guides** ·
   **4 originals** · **14 open gaps**.
+
+The full curation paper trail — every accepted and rejected guide with
+evidence — lives in [`PLANNING/03_verification_log.md`](PLANNING/03_verification_log.md).
 
 ## License
 

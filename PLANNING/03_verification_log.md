@@ -15,7 +15,7 @@ primarily library configuration or product/framework wrapping.
 ## Summary
 
 - **40** build targets across 8 categories.
-- **39** verified guides accepted across **26** targets.
+- **41** verified guides accepted across **26** targets.
 - **14** targets ship as open `gap` (no good public from-scratch guide
   found). Of these, **4** are planned `originals/` (reward-model,
   agent-memory, multi-agent, calibration-hallucination).
@@ -25,6 +25,15 @@ primarily library configuration or product/framework wrapping.
   from-scratch guides, so KV cache now ships with curated links instead.
 
 Zero entries are unverified at launch.
+
+### Additions from the Phase 6 hostile-review pass (2026-05-14)
+
+- ✓ Added **COAX — Building BERT with PyTorch from scratch** (small-encoder-lm)
+  to broaden beyond labml.ai. Hand-written embeddings, attention, multi-head
+  attention, encoder stack — no `transformers.BertModel`.
+- ✓ Replaced **mixture-of-experts** primary with **st-moe-pytorch** (also
+  lucidrains) — the author's own recommended successor. Kept the older
+  repo as a secondary "stepping stone" entry with a clear note.
 
 ---
 

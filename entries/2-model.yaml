@@ -139,6 +139,15 @@
       from_scratch_evidence: "Annotated PyTorch implementation of the MLM pretraining objective used for BERT — the masking procedure and training loop are written out, not imported."
       verified_on: 2026-05-14
       verifier: "bettyguo"
+    - title: "Building BERT with PyTorch from scratch"
+      url: "https://coaxsoft.com/blog/building-bert-with-pytorch-from-scratch"
+      author: "COAX Software"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Hand-written embeddings, attention heads, multi-head attention, encoder stack, and full BERT model — no `transformers.BertModel` import. Article last updated 2026-04-07."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: mixture-of-experts
   category: model
@@ -149,13 +158,22 @@
   understanding: "How frontier models scale parameter count cheaply at inference, and why MoE training is notoriously fiddly."
   difficulty: 3
   guides:
-    - title: "mixture-of-experts"
+    - title: "st-moe-pytorch"
+      url: "https://github.com/lucidrains/st-moe-pytorch"
+      author: "Phil Wang (lucidrains)"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "PyTorch implementation of ST-MoE (the successor lucidrains recommends over the older `mixture-of-experts` repo) — transcribed from the official Mesh-TensorFlow paper code. Custom gating, routing, load-balancing loss. Actively maintained."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "mixture-of-experts (Shazeer-style)"
       url: "https://github.com/lucidrains/mixture-of-experts"
       author: "Phil Wang (lucidrains)"
       kind: code
       language: "Python"
       cost: free
-      from_scratch_evidence: "Sparsely-gated MoE layer implemented from the Shazeer et al. paper in PyTorch — custom gating, top-k routing, and load-balancing loss, no `transformers` library dependency."
+      from_scratch_evidence: "Sparsely-gated MoE from the original Shazeer et al. paper — simpler than ST-MoE, useful as a stepping stone. Author marks it superseded by ST-MoE; included here as the smaller educational reference."
       verified_on: 2026-05-14
       verifier: "bettyguo"
 
