@@ -667,10 +667,9 @@ Content: [CC-BY-4.0](LICENSE) · Code: [MIT](LICENSE).
 
 ## Curator
 
-[**Betty Guo (Dongxin Guo / 郭东欣)**](https://github.com/bettyguo) — final-year
-PhD candidate in Computer Science, [University of Hong Kong](https://www.cs.hku.hk/),
-advised by [Prof. Siu-Ming Yiu](https://www.cs.hku.hk/people/academic-staff/smyiu).
-ORCID: [0009-0000-2388-1072](https://orcid.org/0009-0000-2388-1072).
+**Betty Guo** ([Dongxin Guo](https://bettyguo.github.io/)), 
+PhD Candidate in Computer Science at The University of Hong Kong.
+Advised by [Prof. Siu-Ming Yiu](https://www.cs.hku.hk/people/academic-staff/smyiu).
 
 ## Star history
 
