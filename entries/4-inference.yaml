@@ -85,9 +85,37 @@
       verified_on: 2026-05-14
       verifier: "bettyguo"
 
-- id: quantization
+- id: watermarking
   category: inference
   order: 5
+  title: "LLM watermarking"
+  what_you_build: "A token-level watermark: bias decoding toward a pseudo-random 'green' subset of the vocabulary at each step, then a statistical detector that recovers the watermark with interpretable p-values — the Kirchenbauer et al. recipe."
+  teaches: ["seeded vocabulary partitioning", "green / red token bias at decode time", "statistical detection via z-scores"]
+  understanding: "How model outputs can be tagged in a way that's detectable but doesn't change human-perceived quality — and where the watermark breaks under paraphrasing."
+  difficulty: 3
+  guides:
+    - title: "lm-watermarking (official Kirchenbauer et al. implementation)"
+      url: "https://github.com/jwkirchenbauer/lm-watermarking"
+      author: "John Kirchenbauer (paper authors)"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Canonical implementation of 'A Watermark for Large Language Models' (ICML 2023 Outstanding Paper). `WatermarkLogitsProcessor` and `WatermarkDetector` implement the green/red-list partitioning and z-score detection in PyTorch — the abstraction wraps HF's `LogitsProcessor` interface but the watermark logic itself is hand-written."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "LMWatermark (educational PyTorch re-implementation)"
+      url: "https://github.com/BrianPulfer/LMWatermark"
+      author: "Brian Pulfer"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Independent re-implementation of the Kirchenbauer & Geiping et al. watermarking technique — useful as a second pass for cross-checking the official code's behavior."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: quantization
+  category: inference
+  order: 6
   title: "Quantization (INT8 / INT4)"
   what_you_build: "Post-training quantization of a small LM to INT8 and INT4 — with the accuracy/throughput trade-off measured."
   teaches: ["weight-only quantization", "per-channel scales", "outliers and clipping"]

@@ -14,10 +14,10 @@ primarily library configuration or product/framework wrapping.
 
 ## Summary
 
-- **48** build targets across 8 categories (+8 added in Phase 7 + 8 expansions).
-- **61** verified guides accepted across **40** targets.
+- **50** build targets across 8 categories (+10 added across expansion phases).
+- **65** verified guides accepted across **42** targets.
 - **8** targets ship as open `gap`. **All 8** are filled by originals/.
-- **9** guides were considered and rejected (reasons logged below).
+- **10** guides were considered and rejected (reasons logged below).
 - **1** mid-research scope change: KV cache was originally tier-1 of the
   `originals/` plan; verification surfaced two excellent existing
   from-scratch guides, so KV cache now ships with curated links instead.
@@ -146,6 +146,37 @@ from_scratch_evidence string.
   Medium.
 - `build_readme.py` now renders per-category target + guide counts in
   the TOC so readers can pick a layer to dig into without scrolling.
+
+### Phase-9 expansion (2026-05-14)
+
+A targeted safety/alignment pass. The original taxonomy had no row for
+this area; instead of adding a thin new top-level category (only 2 of 4
+candidate targets had verified from-scratch guides), the two verified
+targets were folded into existing categories:
+
+- ✓ `constitutional-ai` (Training, between DPO and PPO-GRPO) — Cameron
+  Wolfe's RLAIF article (mechanism-level walkthrough) + the open RLHF
+  Book chapter (Nathan Lambert).
+- ✓ `watermarking` (Inference, between speculative-decoding and
+  quantization) — the official Kirchenbauer et al. lm-watermarking repo
+  (ICML 2023 paper code) + Brian Pulfer's educational PyTorch
+  re-implementation.
+
+Two candidate targets *did not* yield from-scratch guides and were
+**not** added to keep the bar:
+
+- `red-teaming` — every candidate (DeepTeam, similar libraries) is a
+  framework, not an educational from-scratch tutorial. Adding the
+  target with a framework-tutorial as the only "guide" would violate
+  the curation rule.
+- `refusal-training` / safety fine-tuning — current literature is
+  research papers (ACTOR, SPF, SAP, Rational), not pedagogical
+  walkthroughs. No accepted target.
+
+The decision *not* to add a Safety & Alignment top-level category is
+itself documented curation work — a thin two-target category would
+have been weaker than absorbing the two verified targets into where
+they naturally fit.
 
 ---
 
