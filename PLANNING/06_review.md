@@ -151,20 +151,19 @@ the relevant index entry.
 
 | # | Target | Category | Hint for contributors |
 |---|---|---|---|
-| 1 | `embedding-layer` | Foundations | Tied vs untied embeddings, comparison plot of L2 norms, training a tiny token2vec end to end. |
-| 2 | `lr-schedule` | Training | Warmup + cosine on a small run, with and without warmup, with the loss-curve comparison plot. |
-| 3 | `quantization` | Inference | A from-scratch INT8 / INT4 PTQ pipeline: per-channel scales, outlier handling, accuracy vs throughput measurement. (NOT a `bitsandbytes` / `auto-gptq` tutorial.) |
-| 4 | `hybrid-search` | Retrieval | BM25 + dense fused with Reciprocal Rank Fusion and learned weighting, evaluated on a small relevance set. |
-| 5 | `reranker` | Retrieval | A cross-encoder trained from scratch on a small relevance dataset. Two-stage retrieval pipeline with the cost/quality trade-off measured. |
-| 6 | `tool-layer` | Agents | A schema-validated tool dispatcher: JSON-Schema, argument validation, error recovery — independent of any specific agent loop. |
-| 7 | `eval-harness` | Evaluation | A pluggable task runner in ~200 lines: task abstraction, prompt template, scoring function, reproducibility seed. (NOT a `lm-evaluation-harness` tutorial.) |
+| 1 | `lr-schedule` | Training | Warmup + cosine on a small run, with and without warmup, with the loss-curve comparison plot. |
+| 2 | `reranker` | Retrieval | A cross-encoder trained from scratch on a small relevance dataset. Two-stage retrieval pipeline with the cost/quality trade-off measured. |
+| 3 | `tool-layer` | Agents | A schema-validated tool dispatcher: JSON-Schema, argument validation, error recovery — independent of any specific agent loop. |
+| 4 | `eval-harness` | Evaluation | A pluggable task runner in ~200 lines: task abstraction, prompt template, scoring function, reproducibility seed. (NOT a `lm-evaluation-harness` tutorial.) |
 
 The four originals at launch cover the other four gaps (reward-model,
 agent-memory, multi-agent, calibration-hallucination).
 
-A post-Phase-6 gap-filling sweep filled three additional gaps with
-verified guides (`sampling`, `mixed-precision`, `ppo-grpo`) — see the
-verification log for the additions and the rationale.
+Two post-Phase-6 gap-filling sweeps filled six additional gaps with
+verified guides (`sampling`, `mixed-precision`, `ppo-grpo`,
+`embedding-layer`, `quantization`, `hybrid-search`). The remaining four
+gaps above each survived both sweeps — they are the real "no good
+from-scratch guide exists" terrain.
 
 ---
 
@@ -184,22 +183,25 @@ verification log for the additions and the rationale.
 
 ## State at end of Phase 6
 
-| | |
-|---|---|
-| Build targets | 40 |
-| Verified guides | **41** (up from 39 after this review; **45** after the post-Phase-6 gap-filling sweep) |
-| Open gaps | 14 after Phase 6 → **11** after gap-filling sweep |
-| Originals | 4 |
-| URLs link-checked live | 53/53 after Phase 6 → **57/57** after gap-filling sweep (3 sibling-repo placeholders intentionally ignored throughout) |
-| Rejected guides | 5 after Phase 6 → **6** (added the rejection of Amit Chaudhary's tool-calling article for being partial) |
-| Fixes applied during this review | 2 entry-level (MoE / encoder-LM) + 1 README footer pointer |
+| | Phase 6 close | After sweep 1 | After sweep 2 |
+|---|---|---|---|
+| Build targets | 40 | 40 | 40 |
+| Verified guides | **41** | 45 | **49** |
+| Open gaps | 14 | 11 | **8** (4 originals + 4 truly open) |
+| Originals | 4 | 4 | 4 |
+| URLs link-checked live | 53/53 | 57/57 | **61/61** (3 sibling-repo placeholders ignored throughout) |
+| Rejected guides | 5 | 6 | **8** |
 
 The hostile-review pass made the index *better*, not just *defended*. It
 upgraded one entry (MoE), broadened another (encoder-LM), and surfaced
-the curation paper trail to readers (verification-log pointer in README).
+the curation paper trail to readers.
 
-The subsequent gap-filling sweep added 4 more verified guides across 3
-gap targets, taking total guide count from 41 → 45 and open gaps from
-14 → 11. Importantly, when one more candidate (Amit Chaudhary's tool
-calling article) was found to only partially cover its target, it was
-rejected rather than padded in — the bar held.
+Two follow-up gap-filling sweeps then took 41 → 49 verified guides while
+the curation bar held: 3 additional candidates were rejected during these
+sweeps for being partial or library-dependent.
+
+The remaining 4 truly open gaps (lr-schedule, reranker, tool-layer,
+eval-harness) survived both sweeps independently. They are the genuine
+"missing from-scratch pedagogy in the AI stack" — high-leverage
+candidates for the next round of community PRs or a Phase-7 originals
+batch.

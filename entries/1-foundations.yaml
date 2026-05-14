@@ -37,8 +37,25 @@
   teaches: ["lookup tables", "dense representations", "tied vs untied embeddings"]
   understanding: "How discrete tokens become differentiable vectors, why dimensionality choices matter, and why the same matrix often ties to the output head."
   difficulty: 1
-  guides: []
-  gap: true
+  guides:
+    - title: "Word2vec from Scratch (NumPy)"
+      url: "https://jaketae.github.io/study/word2vec/"
+      author: "Jake Tae"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Implements Skip-gram in pure NumPy — sliding-window context generation, the matrix update rules, and the embedding extraction. No `gensim`, no `nn.Embedding`."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "word2vec-pytorch (reproduction of the original paper)"
+      url: "https://github.com/OlgaChernytska/word2vec-pytorch"
+      author: "Olga Chernytska"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Hand-written CBOW and Skip-gram modules in PyTorch (no `gensim`, no third-party embedding library). README explicitly documents every deviation from the original paper, which is the signature of educational reproduction."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: autograd-micro
   category: foundations

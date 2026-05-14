@@ -73,7 +73,8 @@ _The machinery before the model._
 
 **What you'll understand after:** How discrete tokens become differentiable vectors, why dimensionality choices matter, and why the same matrix often ties to the output head.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Word2vec from Scratch (NumPy)_](https://jaketae.github.io/study/word2vec/) — Jake Tae · written · free
+- [**Python**: _word2vec-pytorch (reproduction of the original paper)_](https://github.com/OlgaChernytska/word2vec-pytorch) — Olga Chernytska · code · free
 
 #### Autograd / micro-framework <sub>★★☆ · afternoon</sub>
 
@@ -268,7 +269,7 @@ _Making a trained model useful._
 
 **What you'll understand after:** Why 4-bit inference is the default for local deployment, and what it actually costs.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Introduction to Weight Quantization_](https://towardsdatascience.com/introduction-to-weight-quantization-2494701b9c0c/) — Maxime Labonne · written · free
 
 ### Retrieval
 _External memory for LMs._
@@ -296,7 +297,7 @@ _External memory for LMs._
 
 **What you'll understand after:** Why production retrieval is almost never one model — and how the fusion choices change recall.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Hybrid retrieval with reciprocal rank fusion: solving the score normalization problem_](https://avchauzov.github.io/blog/2025/hybrid-retrieval-rrf-rank-fusion/) — Andrey Chauzov · written · free
 
 #### Reranker (cross-encoder) <sub>★★☆ · afternoon</sub>
 
@@ -464,8 +465,8 @@ tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scrat
 
 - Scheduled weekly link-check via CI.
 - Quarterly audit of the verification log.
-- Currently: **40 build targets** · **45 guides** ·
-  **4 originals** · **11 open gaps**.
+- Currently: **40 build targets** · **49 guides** ·
+  **4 originals** · **8 open gaps**.
 
 The full curation paper trail — every accepted and rejected guide with
 evidence — lives in [`PLANNING/03_verification_log.md`](PLANNING/03_verification_log.md).

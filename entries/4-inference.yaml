@@ -93,5 +93,13 @@
   teaches: ["weight-only quantization", "per-channel scales", "outliers and clipping"]
   understanding: "Why 4-bit inference is the default for local deployment, and what it actually costs."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "Introduction to Weight Quantization"
+      url: "https://towardsdatascience.com/introduction-to-weight-quantization-2494701b9c0c/"
+      author: "Maxime Labonne"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Implements `absmax_quantize` and `zeropoint_quantize` from scratch in PyTorch — scale + zero-point calculation, the quantize/dequantize functions, accuracy comparison. `bitsandbytes` is introduced *afterwards* for contrast, not as the implementation."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

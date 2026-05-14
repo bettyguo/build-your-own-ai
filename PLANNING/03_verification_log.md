@@ -15,11 +15,13 @@ primarily library configuration or product/framework wrapping.
 ## Summary
 
 - **40** build targets across 8 categories.
-- **45** verified guides accepted across **29** targets.
-- **11** targets ship as open `gap` (no good public from-scratch guide
+- **49** verified guides accepted across **32** targets.
+- **8** targets ship as open `gap` (no good public from-scratch guide
   found). Of these, **4** are planned `originals/` (reward-model,
-  agent-memory, multi-agent, calibration-hallucination).
-- **6** guides were considered and rejected (reasons logged below).
+  agent-memory, multi-agent, calibration-hallucination); the remaining
+  **4** (lr-schedule, reranker, tool-layer, eval-harness) survived two
+  research sweeps and represent genuinely empty terrain.
+- **8** guides were considered and rejected (reasons logged below).
 - **1** mid-research scope change: KV cache was originally tier-1 of the
   `originals/` plan; verification surfaced two excellent existing
   from-scratch guides, so KV cache now ships with curated links instead.
@@ -37,9 +39,8 @@ Zero entries are unverified at launch.
 
 ### Additions from the post-Phase-6 gap-filling pass (2026-05-14)
 
-After Phase 6 concluded, ran one more research sweep against the 10
-remaining open gaps. Three gaps yielded genuine, verified from-scratch
-guides:
+After Phase 6 concluded, ran a research sweep against the 10 remaining
+open gaps. Three gaps yielded genuine, verified from-scratch guides:
 
 - ✓ Added **Maxime Labonne — Decoding Strategies in LLMs** (sampling).
   Hand-written `greedy_search`, `beam_search`, `top_k_sampling`,
@@ -54,7 +55,46 @@ guides:
   of PPO RLHF in PyTorch; the blog explains the 20+ details that make a
   from-scratch run actually work.
 
-Seven gaps remained genuinely empty after this sweep and stay marked.
+### Additions from the second gap-filling pass (2026-05-14)
+
+Ran a more targeted sweep against the 7 still-open gaps. Three more
+yielded:
+
+- ✓ Added **Jake Tae — Word2vec from Scratch (NumPy)** and
+  **OlgaChernytska/word2vec-pytorch** (embedding-layer). Jake's version
+  is the pedagogical NumPy walkthrough; Olga's is the PyTorch
+  reproduction of the original word2vec paper with explicit deviation
+  notes.
+- ✓ Added **Maxime Labonne — Introduction to Weight Quantization**
+  (quantization). Hand-written `absmax_quantize` and `zeropoint_quantize`
+  functions in PyTorch — `bitsandbytes` is introduced afterward for
+  contrast, not as the implementation.
+- ✓ Added **Andrey Chauzov — Hybrid retrieval with reciprocal rank fusion**
+  (hybrid-search). Author explicitly chooses to implement RRF from scratch
+  rather than use a vector DB's built-in fusion.
+
+### Genuinely empty after multiple sweeps (4 targets)
+
+The following targets survived two distinct research sweeps without
+yielding a from-scratch guide that meets the curation bar. These are
+the real terrain — the actually-missing from-scratch pedagogy in the
+AI stack as of 2026-05:
+
+- `lr-schedule` — guides exist but every one is embedded inside a larger
+  tutorial; no standalone treatment with warmup + cosine + the
+  loss-curve comparison.
+- `reranker` — every candidate uses `sentence-transformers` heavily; the
+  cross-encoder objective is hidden behind framework abstractions.
+- `tool-layer` — every candidate uses Pydantic-AI / Instructor / framework
+  schema generators. The Amit Chaudhary article is the closest but
+  covers only the schema half, not dispatch / validation / error
+  recovery. Rejected to keep the bar.
+- `eval-harness` — every candidate is a tutorial *on using*
+  `lm-evaluation-harness`, not building one. By definition the inverse
+  of the from-scratch target.
+
+These four become high-value `originals/` candidates for a Phase-7
+pass — or community PRs.
 
 ---
 
@@ -228,17 +268,22 @@ Seven gaps remained genuinely empty after this sweep and stay marked.
   https://amitness.com/posts/function-calling-schema/
   Reason: covers function-to-JSON-schema conversion well but stops short of dispatch, runtime validation, and error recovery. The `tool-layer` target requires the full end-to-end dispatcher — partial coverage would mislead a learner. Kept as a gap.
 
+- ✗ **carloodq/rrf** (for `hybrid-search`)
+  https://github.com/carloodq/rrf
+  Reason: uses the `rank_bm25` library and a vector-DB SDK for the retrieval halves; the manual notebook is mostly orchestration around those. Chauzov's article (accepted above) implements RRF more directly and was preferred.
+
+- ✗ **HF blog — Training and Finetuning Reranker Models with Sentence Transformers** (for `reranker`)
+  https://huggingface.co/blog/train-reranker
+  Reason (re-affirmed): tutorial is built around the `sentence-transformers` library; the cross-encoder objective is hidden behind framework abstractions. Re-checked during the second sweep — same conclusion.
+
 ---
 
-## Open gaps (11 targets)
+## Open gaps (8 targets)
 
 Shipped as `gap: true` — readers see a marked open slot rather than a weak link.
 
-- `embedding-layer` (Foundations)
 - `lr-schedule` (Training)
 - `reward-model` (Training) — `originals/reward-model.md` planned
-- `quantization` (Inference)
-- `hybrid-search` (Retrieval)
 - `reranker` (Retrieval)
 - `tool-layer` (Agents)
 - `agent-memory` (Agents) — `originals/agent-memory.md` planned

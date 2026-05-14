@@ -55,8 +55,16 @@
   teaches: ["score fusion", "RRF", "lexical / semantic complementarity"]
   understanding: "Why production retrieval is almost never one model — and how the fusion choices change recall."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Hybrid retrieval with reciprocal rank fusion: solving the score normalization problem"
+      url: "https://avchauzov.github.io/blog/2025/hybrid-retrieval-rrf-rank-fusion/"
+      author: "Andrey Chauzov"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Author explicitly says: 'RRF is integrated into many vector databases, but let's implement it from scratch to understand the mechanics.' Hand-written `reciprocal_rank_fusion(...)` function combines a BM25 ranked list and a vector ranked list — no Elasticsearch / Qdrant / Weaviate built-in fusion."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: reranker
   category: retrieval
