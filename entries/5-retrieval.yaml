@@ -78,9 +78,28 @@
   gap: true
   original_planned: true
 
-- id: rag-pipeline
+- id: retrieval-evaluation
   category: retrieval
   order: 5
+  title: "Retrieval evaluation (Recall@K, MRR, NDCG)"
+  what_you_build: "A small evaluation kit that scores a retriever's output against a labeled set — Recall@K, Mean Reciprocal Rank, MAP@K, and NDCG@K, all from primitives."
+  teaches: ["binary vs graded relevance", "rank-aware metrics", "averaging across queries"]
+  understanding: "Why 'top-3 looks right' isn't an evaluation — and what each metric tells you that the others don't (recall is set-level; MRR cares only about the first hit; NDCG weights position with diminishing returns)."
+  difficulty: 1
+  guides:
+    - title: "Evaluation Measures in Information Retrieval"
+      url: "https://www.pinecone.io/learn/offline-evaluation/"
+      author: "Pinecone Learn"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Hand-implements Recall@K, MRR, MAP@K, and NDCG@K in Python — variable initialization, loops, reciprocal-rank computation, DCG / IDCG / normalization. No `pytrec_eval` / `ranx` shortcut."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: rag-pipeline
+  category: retrieval
+  order: 6
   title: "End-to-end RAG pipeline (no frameworks)"
   what_you_build: "Chunk → embed → retrieve → answer, in plain Python — no LangChain, no LlamaIndex, no vector DB SDK."
   teaches: ["chunking strategies", "context stuffing", "answer grounding"]

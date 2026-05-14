@@ -1,8 +1,27 @@
 # Category: Beyond Text — vision, audio, multimodal.
 
-- id: diffusion-ddpm
+- id: vision-transformer
   category: beyond-text
   order: 1
+  title: "Vision Transformer (ViT)"
+  what_you_build: "A Vision Transformer from scratch — patch embedding, transformer encoder over patches, classification head — trained on CIFAR-10 or similar."
+  teaches: ["images as a sequence of patches", "class token", "transformer encoder applied to vision"]
+  understanding: "Why 'an image is worth 16×16 words' — and why the same transformer that does language can do vision once you tokenize pixels."
+  difficulty: 2
+  guides:
+    - title: "vision-transformer-from-scratch"
+      url: "https://github.com/tintn/vision-transformer-from-scratch"
+      author: "Tin Nguyen"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "`vit.py` defines `ViTForImageClassification` containing the patch embedding, transformer encoder, and classification head — all in pure PyTorch primitives. Companion blog post on Towards Data Science walks through every layer."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: diffusion-ddpm
+  category: beyond-text
+  order: 2
   title: "Diffusion model (DDPM)"
   what_you_build: "A toy image diffusion model — forward noising, reverse denoising, training a U-Net to predict noise."
   teaches: ["forward / reverse processes", "score / noise prediction", "the variance schedule"]
@@ -28,9 +47,28 @@
       verified_on: 2026-05-14
       verifier: "bettyguo"
 
+- id: latent-diffusion
+  category: beyond-text
+  order: 3
+  title: "Latent diffusion (Stable Diffusion-style)"
+  what_you_build: "A latent diffusion model — VAE encoder/decoder + a UNet diffusion model that runs in the VAE's latent space, plus text conditioning via CLIP — the recipe behind Stable Diffusion."
+  teaches: ["why latent space (compute, not pixels)", "VAE encode/decode", "classifier-free guidance"]
+  understanding: "Why Stable Diffusion is fast: it diffuses in a 64×64 latent space, not a 512×512 pixel space — and what the VAE / UNet / CLIP play in the trade-off."
+  difficulty: 3
+  guides:
+    - title: "Latent Diffusion Models (annotated PyTorch implementation)"
+      url: "https://nn.labml.ai/diffusion/stable_diffusion/latent_diffusion.html"
+      author: "labml.ai"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Annotated implementation of the Latent Diffusion Models paper. Custom `Autoencoder`, `UNetModel`, and `CLIPTextEmbedder` modules — no `diffusers` library. Pair the autoencoder + UNet exactly as Stable Diffusion does."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
 - id: clip
   category: beyond-text
-  order: 2
+  order: 4
   title: "CLIP-style contrastive model"
   what_you_build: "A small dual-encoder (image + text) trained with an InfoNCE contrastive loss — multimodal alignment from scratch."
   teaches: ["contrastive learning", "InfoNCE", "modality alignment"]
@@ -49,7 +87,7 @@
 
 - id: asr-ctc
   category: beyond-text
-  order: 3
+  order: 5
   title: "Speech recognition (CTC)"
   what_you_build: "A toy automatic-speech-recognition model: audio features → encoder → CTC loss → greedy decoding."
   teaches: ["audio feature extraction (mel-spectrogram)", "CTC alignment", "blank-token decoding"]

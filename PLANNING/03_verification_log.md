@@ -14,12 +14,10 @@ primarily library configuration or product/framework wrapping.
 
 ## Summary
 
-- **43** build targets across 8 categories (+3 added in Phase-7 expansion).
-- **54** verified guides accepted across **35** targets.
-- **8** targets ship as open `gap`. **All 8** are now filled by originals/
-  (reward-model, agent-memory, multi-agent, calibration-hallucination,
-  lr-schedule, reranker, tool-layer, eval-harness).
-- **8** guides were considered and rejected (reasons logged below).
+- **48** build targets across 8 categories (+8 added in Phase 7 + 8 expansions).
+- **61** verified guides accepted across **40** targets.
+- **8** targets ship as open `gap`. **All 8** are filled by originals/.
+- **9** guides were considered and rejected (reasons logged below).
 - **1** mid-research scope change: KV cache was originally tier-1 of the
   `originals/` plan; verification surfaced two excellent existing
   from-scratch guides, so KV cache now ships with curated links instead.
@@ -107,6 +105,47 @@ One candidate rejected during Phase-7 verification:
   and takeaways from working with LoRA—a top-down view," not the
   from-scratch implementation. Raschka's book appendix-E (accepted
   separately) covers the implementation.
+
+### Phase-8 expansion (2026-05-14)
+
+A second user-requested breadth pass. **5 new build targets** added in
+genuine omission areas; **1 secondary guide** added; **1 candidate
+rejected**. The curation bar held: every addition has a verified
+from_scratch_evidence string.
+
+- ✓ `layer-normalization` (Foundations) — labml.ai's annotated LayerNorm.
+  Mean / variance / scale / shift computed from PyTorch primitives, not
+  `nn.LayerNorm`.
+- ✓ `grouped-query-attention` (Model) — Max Shap's 16-line GQA + the
+  fkodom PyTorch reproduction of the paper. Both implement GQA without
+  `nn.MultiheadAttention`.
+- ✓ `retrieval-evaluation` (Retrieval) — Pinecone's "Evaluation Measures
+  in Information Retrieval." Recall@K, MRR, MAP@K, NDCG@K all
+  hand-written in Python.
+- ✓ `vision-transformer` (Beyond Text) — tintn/vision-transformer-from-scratch.
+  Patch embedding + encoder + classification head in pure PyTorch with
+  a companion blog post.
+- ✓ `latent-diffusion` (Beyond Text) — labml.ai's annotated Latent
+  Diffusion Models. VAE + UNet + CLIP text embedder, all custom modules,
+  no `diffusers` library.
+- ✓ Added `karpathy/llm.c` as a secondary guide to `small-gpt` — pure
+  C/CUDA reproduction of GPT-2 / GPT-3 miniseries pretraining, no
+  PyTorch.
+- ✗ Rejected `qywu.github.io` gradient-checkpointing tutorial — uses
+  `torch.utils.checkpoint.checkpoint()` directly, which is the thing
+  being taught. No from-scratch guide found for `gradient-checkpointing`
+  in this pass; the target was not added since the curation bar would
+  have to be lowered to admit any candidate.
+
+### Tooling notes
+
+- Added `medium.com/@maxshapp/...` to `tools/.linkcheckignore` with a
+  documented reason: Medium aggressively 403s bots on `/@username/`
+  paths, even though the article loads in browsers and was verified at
+  curation time. The exception is scoped to the single URL, not all of
+  Medium.
+- `build_readme.py` now renders per-category target + guide counts in
+  the TOC so readers can pick a layer to dig into without scrolling.
 
 ---
 

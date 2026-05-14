@@ -12,3 +12,11 @@
 github.com/bettyguo/ai-engineer-roadmap
 github.com/bettyguo/harness-engineer-roadmap
 github.com/bettyguo/llm-interview-prep
+
+# Specific Medium profile URLs that 403 automated link-checkers even
+# though the article is fully accessible to human readers and was
+# verified at curation time. Medium aggressively bot-detects on the
+# /@username/ paths; the /towardsdatascience/ paths usually work.
+# If you add another medium.com/@... URL, verify it manually with the
+# `python tools/validate_entries.py` step *before* relying on linkcheck.
+medium.com/@maxshapp/grouped-query-attention-gqa-explained-with-code

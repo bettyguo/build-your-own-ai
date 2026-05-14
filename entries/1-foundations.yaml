@@ -94,3 +94,22 @@
       from_scratch_evidence: "Lecture 1 builds micrograd from an empty file; lectures 2–4 (makemore) implement an MLP and walk through manual backward passes — Lecture 4 is literally titled 'Becoming a Backprop Ninja' and computes every gradient by hand."
       verified_on: 2026-05-14
       verifier: "bettyguo"
+
+- id: layer-normalization
+  category: foundations
+  order: 5
+  title: "Layer normalization (LN, RMSNorm)"
+  what_you_build: "LayerNorm and RMSNorm implemented from scratch — the normalization that sits inside every transformer block."
+  teaches: ["mean / variance normalization", "learnable scale and shift", "RMSNorm's simplification"]
+  understanding: "Why every modern transformer block sandwiches sub-layers with normalization — and what the gain / bias parameters are doing."
+  difficulty: 1
+  guides:
+    - title: "Layer Normalization (annotated PyTorch implementation)"
+      url: "https://nn.labml.ai/normalization/layer_norm/index.html"
+      author: "labml.ai"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Implements LayerNorm by computing mean / variance / scale / shift directly with PyTorch primitives — no `nn.LayerNorm`. Annotated against the original paper."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

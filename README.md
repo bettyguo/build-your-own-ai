@@ -14,7 +14,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/content-CC--BY--4.0-blue.svg" alt="content license"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-green.svg" alt="code license"></a>
   <img src="https://img.shields.io/badge/last%20updated-2026-05-14-brightgreen.svg" alt="last updated">
-  <img src="https://img.shields.io/badge/targets-43-informational.svg" alt="target count">
+  <img src="https://img.shields.io/badge/targets-48-informational.svg" alt="target count">
   <img src="https://img.shields.io/badge/originals-8-purple.svg" alt="originals">
 </p>
 
@@ -41,17 +41,19 @@ focused tightly on the modern AI stack.
   `★★★` weekend project.
 - `[original]` = an in-repo starter guide for a target where no good public
   guide exists yet (see [`originals/`](originals/)).
+- **Depth at a glance:** category totals appear in the table of contents
+  below — pick the layer you want to dig into.
 
 ## Table of contents
 
-1. [Foundations](#foundations)
-1. [The Model](#the-model)
-1. [Training](#training)
-1. [Inference](#inference)
-1. [Retrieval](#retrieval)
-1. [Agents](#agents)
-1. [Evaluation](#evaluation)
-1. [Beyond Text](#beyond-text)
+1. [Foundations](#foundations) — 5 targets · 7 guides
+1. [The Model](#the-model) — 9 targets · 18 guides
+1. [Training](#training) — 10 targets · 12 guides
+1. [Inference](#inference) — 5 targets · 6 guides
+1. [Retrieval](#retrieval) — 6 targets · 6 guides
+1. [Agents](#agents) — 5 targets · 4 guides
+1. [Evaluation](#evaluation) — 3 targets · 2 guides
+1. [Beyond Text](#beyond-text) — 5 targets · 6 guides
 
 ---
 
@@ -92,6 +94,14 @@ _The machinery before the model._
 
 - [**Python**: _Neural Networks: Zero to Hero (lectures 1–4)_](https://github.com/karpathy/nn-zero-to-hero) — Andrej Karpathy · course · free
 
+#### Layer normalization (LN, RMSNorm) <sub>★☆☆ · easy</sub>
+
+**What you build:** LayerNorm and RMSNorm implemented from scratch — the normalization that sits inside every transformer block.
+
+**What you'll understand after:** Why every modern transformer block sandwiches sub-layers with normalization — and what the gain / bias parameters are doing.
+
+- [**Python**: _Layer Normalization (annotated PyTorch implementation)_](https://nn.labml.ai/normalization/layer_norm/index.html) — labml.ai · written · free
+
 ### The Model
 _Attention to a full small LM._
 
@@ -103,6 +113,15 @@ _Attention to a full small LM._
 
 - [**Python**: _Understanding and Coding Self-Attention, Multi-Head Attention, Causal-Attention, and Cross-Attention in LLMs_](https://magazine.sebastianraschka.com/p/understanding-and-coding-self-attention) — Sebastian Raschka · written · free
 - [**Python**: _The Annotated Transformer_](https://nlp.seas.harvard.edu/2018/04/03/attention.html) — Alexander 'Sasha' Rush (Harvard NLP) · written · free
+
+#### Grouped-query / multi-query attention <sub>★★☆ · afternoon</sub>
+
+**What you build:** GQA and MQA — attention variants where Q heads outnumber KV heads — implemented from scratch as a drop-in alternative to multi-head attention.
+
+**What you'll understand after:** Why LLaMA-2 70B, Mistral, and most frontier models use GQA — and how the same code recovers MHA at one extreme and MQA at the other.
+
+- [**Python**: _Grouped Query Attention (GQA) explained with code_](https://medium.com/@maxshapp/grouped-query-attention-gqa-explained-with-code-e56ee2a1df5a) — Max Shap · written · free
+- [**Python**: _grouped-query-attention-pytorch_](https://github.com/fkodom/grouped-query-attention-pytorch) — fkodom · code · free
 
 #### Positional encodings <sub>★★☆ · afternoon</sub>
 
@@ -131,6 +150,7 @@ _Attention to a full small LM._
 - [**Python**: _nanoGPT_](https://github.com/karpathy/nanoGPT) — Andrej Karpathy · code · free
 - [**Python**: _nanochat_](https://github.com/karpathy/nanochat) — Andrej Karpathy · code · free
 - [**Python**: _Build a Large Language Model (From Scratch)_](https://github.com/rasbt/LLMs-from-scratch) — Sebastian Raschka · book · paid
+- [**C**: _llm.c (LLM training in pure C/CUDA)_](https://github.com/karpathy/llm.c) — Andrej Karpathy · code · free
 
 #### A small encoder LM (BERT-style) <sub>★★☆ · afternoon</sub>
 
@@ -333,6 +353,14 @@ _External memory for LMs._
 
 > _Gap target — original starter guide planned in [`originals/reranker.md`](originals/reranker.md)._
 
+#### Retrieval evaluation (Recall@K, MRR, NDCG) <sub>★☆☆ · easy</sub>
+
+**What you build:** A small evaluation kit that scores a retriever's output against a labeled set — Recall@K, Mean Reciprocal Rank, MAP@K, and NDCG@K, all from primitives.
+
+**What you'll understand after:** Why 'top-3 looks right' isn't an evaluation — and what each metric tells you that the others don't (recall is set-level; MRR cares only about the first hit; NDCG weights position with diminishing returns).
+
+- [**Python**: _Evaluation Measures in Information Retrieval_](https://www.pinecone.io/learn/offline-evaluation/) — Pinecone Learn · written · free
+
 #### End-to-end RAG pipeline (no frameworks) <sub>★★☆ · afternoon</sub>
 
 **What you build:** Chunk → embed → retrieve → answer, in plain Python — no LangChain, no LlamaIndex, no vector DB SDK.
@@ -417,6 +445,14 @@ _Knowing if it actually works._
 ### Beyond Text
 _Vision, audio, multimodal._
 
+#### Vision Transformer (ViT) <sub>★★☆ · afternoon</sub>
+
+**What you build:** A Vision Transformer from scratch — patch embedding, transformer encoder over patches, classification head — trained on CIFAR-10 or similar.
+
+**What you'll understand after:** Why 'an image is worth 16×16 words' — and why the same transformer that does language can do vision once you tokenize pixels.
+
+- [**Python**: _vision-transformer-from-scratch_](https://github.com/tintn/vision-transformer-from-scratch) — Tin Nguyen · code · free
+
 #### Diffusion model (DDPM) <sub>★★★ · weekend</sub>
 
 **What you build:** A toy image diffusion model — forward noising, reverse denoising, training a U-Net to predict noise.
@@ -425,6 +461,14 @@ _Vision, audio, multimodal._
 
 - [**Python**: _denoising-diffusion-pytorch_](https://github.com/lucidrains/denoising-diffusion-pytorch) — Phil Wang (lucidrains) · code · free
 - [**Python**: _Hugging Face Diffusion Models Course (Unit 1: Introduction)_](https://huggingface.co/learn/diffusion-course/unit0/1) — Jonathan Whitaker, Lewis Tunstall (Hugging Face) · course · free
+
+#### Latent diffusion (Stable Diffusion-style) <sub>★★★ · weekend</sub>
+
+**What you build:** A latent diffusion model — VAE encoder/decoder + a UNet diffusion model that runs in the VAE's latent space, plus text conditioning via CLIP — the recipe behind Stable Diffusion.
+
+**What you'll understand after:** Why Stable Diffusion is fast: it diffuses in a 64×64 latent space, not a 512×512 pixel space — and what the VAE / UNet / CLIP play in the trade-off.
+
+- [**Python**: _Latent Diffusion Models (annotated PyTorch implementation)_](https://nn.labml.ai/diffusion/stable_diffusion/latent_diffusion.html) — labml.ai · written · free
 
 #### CLIP-style contrastive model <sub>★★★ · weekend</sub>
 
@@ -491,7 +535,7 @@ tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scrat
 
 - Scheduled weekly link-check via CI.
 - Quarterly audit of the verification log.
-- Currently: **43 build targets** · **54 guides** ·
+- Currently: **48 build targets** · **61 guides** ·
   **8 originals** · **8 open gaps**.
 
 The full curation paper trail — every accepted and rejected guide with

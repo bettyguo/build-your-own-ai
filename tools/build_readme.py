@@ -165,7 +165,9 @@ def main(check: bool) -> None:
         entries = load_category(fname)
         all_entries.extend(entries)
         sections.append(render_category(slug_, fname, name, blurb))
-        toc.append(f"1. [{name}](#{slug(name)})")
+        guide_count = sum(len(e.get("guides") or []) for e in entries)
+        toc.append(f"1. [{name}](#{slug(name)}) — "
+                   f"{len(entries)} targets · {guide_count} guides")
 
     stats = gather_stats(all_entries)
     rendered = tmpl.render(

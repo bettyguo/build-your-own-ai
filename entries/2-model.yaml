@@ -28,9 +28,37 @@
       verified_on: 2026-05-14
       verifier: "bettyguo"
 
-- id: positional-encodings
+- id: grouped-query-attention
   category: model
   order: 2
+  title: "Grouped-query / multi-query attention"
+  what_you_build: "GQA and MQA — attention variants where Q heads outnumber KV heads — implemented from scratch as a drop-in alternative to multi-head attention."
+  teaches: ["KV cache memory reduction", "query head grouping", "MQA as the g=1 special case"]
+  understanding: "Why LLaMA-2 70B, Mistral, and most frontier models use GQA — and how the same code recovers MHA at one extreme and MQA at the other."
+  difficulty: 2
+  guides:
+    - title: "Grouped Query Attention (GQA) explained with code"
+      url: "https://medium.com/@maxshapp/grouped-query-attention-gqa-explained-with-code-e56ee2a1df5a"
+      author: "Max Shap"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "'The simplest GQA implementation can take less than 16 lines of python code' — uses einsum and manual tensor reshaping; no `nn.MultiheadAttention`, no torchtune."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "grouped-query-attention-pytorch"
+      url: "https://github.com/fkodom/grouped-query-attention-pytorch"
+      author: "fkodom"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Hand-written `MultiheadGQA` class implementing GQA from the paper (arXiv 2305.13245). Intended as a drop-in for `nn.MultiheadAttention` — meaning the attention is built, not imported."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: positional-encodings
+  category: model
+  order: 3
   title: "Positional encodings"
   what_you_build: "Sinusoidal positional encodings, learned positional embeddings, and Rotary Position Embedding (RoPE) — all from scratch."
   teaches: ["positional information without recurrence", "RoPE rotation in complex space", "extrapolation behavior"]
@@ -58,7 +86,7 @@
 
 - id: transformer-block
   category: model
-  order: 3
+  order: 4
   title: "Transformer block"
   what_you_build: "A single decoder-only transformer block — LayerNorm, multi-head self-attention, MLP, residual connections — stacked into a model."
   teaches: ["pre-norm vs post-norm", "residual streams", "MLP expansion ratio"]
@@ -77,7 +105,7 @@
 
 - id: small-gpt
   category: model
-  order: 4
+  order: 5
   title: "A small GPT"
   what_you_build: "A complete decoder-only language model: tokenizer → embedding → N transformer blocks → output head — trained end-to-end on a small corpus."
   teaches: ["autoregressive language modeling", "training/eval split", "loss curves at small scale"]
@@ -120,10 +148,19 @@
       from_scratch_evidence: "Companion code for the Manning book — the book's stated principle is 'implements the code from scratch without using any external LLM libraries' (uses PyTorch primitives only). Repo is free; the book itself is paid."
       verified_on: 2026-05-14
       verifier: "bettyguo"
+    - title: "llm.c (LLM training in pure C/CUDA)"
+      url: "https://github.com/karpathy/llm.c"
+      author: "Andrej Karpathy"
+      kind: code
+      language: "C"
+      cost: free
+      from_scratch_evidence: "Reproduces GPT-2 / GPT-3 miniseries pretraining in pure C and CUDA — 'no need for 245MB of PyTorch or 107MB of cPython.' The full pipeline (forward, backward, optimizer, training loop) is hand-written."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: small-encoder-lm
   category: model
-  order: 5
+  order: 6
   title: "A small encoder LM (BERT-style)"
   what_you_build: "A masked-language-model encoder, pretrained on a toy corpus, then fine-tuned with a classification head."
   teaches: ["MLM objective", "bidirectional attention", "the encoder/decoder split"]
@@ -151,7 +188,7 @@
 
 - id: mixture-of-experts
   category: model
-  order: 6
+  order: 7
   title: "Mixture-of-Experts block"
   what_you_build: "A sparse MoE layer: a gating router that picks top-k experts per token, plus a load-balancing auxiliary loss."
   teaches: ["sparse activation", "top-k routing", "load balancing"]
@@ -179,7 +216,7 @@
 
 - id: long-context-rope-scaling
   category: model
-  order: 7
+  order: 8
   title: "Long context (RoPE scaling, NTK, YaRN)"
   what_you_build: "Position Interpolation and NTK-aware / YaRN RoPE scaling — the techniques that extend a pretrained model from a 4k context to 32k+."
   teaches: ["why naive extrapolation breaks", "linear position interpolation", "frequency-band scaling (NTK, YaRN)"]
@@ -198,7 +235,7 @@
 
 - id: ssm-mamba-block
   category: model
-  order: 8
+  order: 9
   title: "State-space / Mamba-style block"
   what_you_build: "A minimal selective state-space model layer — a serious linear-time alternative to attention."
   teaches: ["state-space models", "selectivity", "linear-time long-context"]
