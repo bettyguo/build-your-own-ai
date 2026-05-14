@@ -115,3 +115,22 @@
       from_scratch_evidence: "Builds the vector DB as a plain Python list, writes `cosine_similarity` from first principles, no LangChain / LlamaIndex / Chroma — just `ollama` for the local model calls."
       verified_on: 2026-05-14
       verifier: "bettyguo"
+
+- id: graphrag
+  category: retrieval
+  order: 7
+  title: "GraphRAG"
+  what_you_build: "Microsoft's GraphRAG pipeline from scratch — chunk → entity & relationship extraction with an LLM → knowledge-graph construction → Leiden community detection → community summarization → query-focused answer synthesis."
+  teaches: ["entity / relation extraction with structured LLM prompts", "community detection on knowledge graphs", "global vs local retrieval over a graph"]
+  understanding: "Why graph-structured retrieval beats vanilla RAG on multi-hop and aggregation questions — and what the full GraphRAG paper actually does, end to end, without the framework."
+  difficulty: 3
+  guides:
+    - title: "example-graphrag (end-to-end GraphRAG pipeline from scratch)"
+      url: "https://github.com/stephenc222/example-graphrag"
+      author: "Stephen Collins"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Implements the 'From Local to Global: A Graph RAG Approach' paper directly: `extract_elements_from_chunks` (LLM entity extraction), `detect_communities` (Leiden algorithm on the graph), `summarize_communities`, and `answer_query` — all as standalone Python functions in `app.py`. Does NOT use Microsoft's `graphrag` library; the algorithm is in the repo, not imported."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

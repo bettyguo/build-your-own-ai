@@ -215,7 +215,7 @@
 - id: ppo-grpo
   category: training
   order: 11
-  title: "PPO / GRPO-style RL loop"
+  title: "PPO-style RL loop (RLHF)"
   what_you_build: "A miniature RL post-training loop — policy update with KL penalty and advantage estimation, on a tiny model."
   teaches: ["policy gradients", "KL regularization", "advantage estimation"]
   understanding: "What the 'RL' in RLHF actually does, and where it differs from classic RL."
@@ -237,5 +237,52 @@
       language: "Python"
       cost: free
       from_scratch_evidence: "Companion blog to the `lm-human-preference-details` repo above — walks through 20+ implementation details (padding, whitening, position IDs, custom Adam) that make a from-scratch PPO RLHF run actually work."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: knowledge-distillation
+  category: training
+  order: 12
+  title: "Knowledge distillation"
+  what_you_build: "A teacher → student distillation: the soft-label loss (KL-div on temperature-scaled logits) combined with the hard-label cross-entropy, training a small student to recover most of a big teacher's accuracy."
+  teaches: ["soft-label / temperature-scaled cross-entropy", "T² loss rescale", "the soft-target + hard-target mix"]
+  understanding: "Why you can compress a 70B model into a 7B model with most of the quality intact — and why the student often *outperforms* the same architecture trained from labels alone."
+  difficulty: 2
+  guides:
+    - title: "Knowledge Distillation Tutorial (official PyTorch)"
+      url: "https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html"
+      author: "Alexandros Chariton"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Manually constructs the KD loss: `soft_targets = nn.functional.softmax(teacher_logits / T, dim=-1)` and `soft_targets_loss = torch.sum(soft_targets * (soft_targets.log() - soft_prob)) / soft_prob.size()[0] * (T**2)`. Combined with hand-written cross-entropy on labels. No KD library — the tutorial explicitly notes 'everything needed is available in torch and torchvision.'"
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Distilling the Knowledge in a Neural Network (annotated PyTorch)"
+      url: "https://nn.labml.ai/distillation/index.html"
+      author: "labml.ai"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Annotated implementation of the Hinton et al. 2015 paper. The composite loss is hand-written: `soft_targets_loss = kl_div_loss(soft_prob, soft_targets); loss = soft_targets_weight * soft_targets_loss + label_loss_weight * label_loss`. No distillation framework."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: grpo
+  category: training
+  order: 13
+  title: "GRPO (DeepSeek-R1 style)"
+  what_you_build: "Group Relative Policy Optimization from scratch — sample G completions per prompt, score them with a verifiable reward, normalize advantages within the group, and update the policy with a clipped PPO-style objective and KL penalty."
+  teaches: ["group-relative advantage (no critic network)", "GRPO vs PPO trade-offs", "verifiable rewards on reasoning tasks (math, code)"]
+  understanding: "Why DeepSeek-R1 ditched the value model and what that buys (less memory, simpler training) — and why GRPO is the algorithm behind the recent reasoning-model wave."
+  difficulty: 3
+  guides:
+    - title: "GRPO-Zero — DeepSeek-R1's GRPO from scratch"
+      url: "https://github.com/policy-gradient/GRPO-Zero"
+      author: "policy-gradient (open-source contributors)"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "README states 'We implement almost everything from scratch and only depend on `tokenizers` for tokenization and `pytorch` for training.' Avoids `transformers`, `trl`'s `GRPOTrainer`, and `vllm` — the GRPO loop, group-relative advantage normalization, clipped objective, and KL penalty are all hand-written for 24GB-class GPUs."
       verified_on: 2026-05-14
       verifier: "bettyguo"

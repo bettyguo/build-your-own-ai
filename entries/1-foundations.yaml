@@ -113,3 +113,41 @@
       from_scratch_evidence: "Implements LayerNorm by computing mean / variance / scale / shift directly with PyTorch primitives — no `nn.LayerNorm`. Annotated against the original paper."
       verified_on: 2026-05-14
       verifier: "bettyguo"
+
+- id: weight-init
+  category: foundations
+  order: 6
+  title: "Weight initialization (Xavier / Kaiming)"
+  what_you_build: "Xavier (Glorot) and Kaiming (He) initialization from scratch — derived from the variance-preservation requirement and verified empirically by tracking activation variance across layers."
+  teaches: ["activation variance propagation", "fan-in / fan-out", "why ReLU needs Kaiming and tanh needs Xavier"]
+  understanding: "Why a deep net's loss explodes-then-flattens with naive `randn` init, and why the right initializer keeps gradients alive through 50+ layers."
+  difficulty: 1
+  guides:
+    - title: "Tutorial 3: Initialization and Optimization (UvA Deep Learning)"
+      url: "https://lightning.ai/docs/pytorch/stable/notebooks/course_UvA-DL/03-initialization-and-optimization.html"
+      author: "Phillip Lippe (UvA / PyTorch Lightning)"
+      kind: course
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Implements constant, variance-based, Xavier, and Kaiming initializers as hand-written `nn.init` calls plus a custom variance-tracking experiment — derives `Var(W) = 1/d_x` from the input-variance-preserving requirement, then shows the activation-vanishing failure mode that motivates each scheme. No reliance on `nn.Module`'s default init."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: dropout
+  category: foundations
+  order: 7
+  title: "Dropout"
+  what_you_build: "Inverted dropout from scratch — Bernoulli masking, the 1/(1−p) scale at training time, and the eval-mode passthrough."
+  teaches: ["Bernoulli masking", "inverted vs vanilla dropout", "train vs eval mode"]
+  understanding: "Why dropout is regularization, why the scale factor lives at train time (not eval), and why monitoring train/val gap is the only way to set p."
+  difficulty: 1
+  guides:
+    - title: "Regularization from Scratch — Dropout"
+      url: "https://nilanjanchattopadhyay.github.io/basics/2020/04/20/Regularization-from-Scratch-Dropout.html"
+      author: "Nilanjan Chattopadhyay"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Custom `Dropout` module: `torch.zeros(...).bernoulli_(1-p)` mask, explicit `H1 = (Output * DropoutMask) / (1 - self.Dropout)` inverted-dropout scaling at training, and `if self.training` branch for eval-mode passthrough — exactly what `nn.Dropout` hides. PyTorch's built-in is shown afterward for contrast, not as the implementation."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

@@ -113,9 +113,21 @@
       verified_on: 2026-05-14
       verifier: "bettyguo"
 
-- id: quantization
+- id: structured-decoding
   category: inference
   order: 6
+  title: "Structured / constrained decoding (JSON, regex, grammar)"
+  what_you_build: "Logit-masked decoding that constrains generation to a regex, JSON-schema, or context-free grammar — by compiling the constraint into a finite-state machine over the vocabulary and zeroing out invalid tokens at every step."
+  teaches: ["compiling a regex/JSON schema into an FSM over the vocabulary", "logit masking (`logits[~valid] = -inf`)", "state-tracking across multi-token outputs"]
+  understanding: "Why 'structured output' isn't an LLM capability — it's the *sampler's* job — and why the same FSM-over-vocab trick underpins Outlines, XGrammar, vLLM's guided decoding, and OpenAI's strict JSON mode."
+  difficulty: 2
+  guides: []
+  gap: true
+  original_planned: true
+
+- id: quantization
+  category: inference
+  order: 7
   title: "Quantization (INT8 / INT4)"
   what_you_build: "Post-training quantization of a small LM to INT8 and INT4 — with the accuracy/throughput trade-off measured."
   teaches: ["weight-only quantization", "per-channel scales", "outliers and clipping"]

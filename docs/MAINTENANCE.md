@@ -37,3 +37,18 @@ overwrite — the running log is a credibility asset.
   Either fix the URL or remove the entry. If the failure is upstream rate
   limiting that recovers later, the scheduled job will self-resolve next
   week.
+
+## Quarterly currency check
+
+Run on the 1st of every quarter:
+
+```
+python tools/validate_entries.py --stale-days 90
+```
+
+This warns (does not fail) for any guide whose `verified_on` is more
+than 90 days old. Each warning is a re-verification trigger: open the
+URL, confirm the from-scratch evidence still holds, bump `verified_on`
+in the YAML. The Phase-10 build of `validate_entries.py` introduced
+this flag and the orphan-originals guard; both are documented in
+`PLANNING/03_verification_log.md`.

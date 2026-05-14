@@ -13,6 +13,11 @@ Enforces:
   - category slug matches the filename's numeric prefix
   - each entry has either at least one guide OR gap == True
   - if original_planned, an originals/<id>.md must exist
+
+Optional currency check (`--stale-days N`, default off):
+  - prints a warning (does NOT fail) for any guide whose `verified_on`
+    is older than N days. Use this as a quarterly audit trigger:
+        python tools/validate_entries.py --stale-days 90
 """
 from __future__ import annotations
 
@@ -189,6 +194,21 @@ def check_uniqueness(v: V, entries: list[dict[str, Any]]) -> None:
                 urls[url] = f"{src}::{eid}"
 
 
+def check_originals_orphans(v: V, entries: list[dict[str, Any]]) -> None:
+    """Every originals/<id>.md (except README.md) must correspond to an entry
+    with `original_planned: true`. Catches half-deleted gaps and stray files."""
+    if not ORIGINALS_DIR.exists():
+        return
+    planned_ids = {e.get("id") for e in entries if e.get("original_planned")}
+    for p in ORIGINALS_DIR.glob("*.md"):
+        if p.name == "README.md":
+            continue
+        if p.stem not in planned_ids:
+            v.err(f"originals/{p.name}",
+                  f"orphan original — no entry sets original_planned: true for "
+                  f"id '{p.stem}' (rename the file, or set the flag on the entry)")
+
+
 def check_ordering(v: V, entries: list[dict[str, Any]]) -> None:
     by_cat: dict[str, list[dict[str, Any]]] = {c: [] for c in CATEGORY_ORDER}
     for e in entries:
@@ -205,18 +225,51 @@ def check_ordering(v: V, entries: list[dict[str, Any]]) -> None:
             seen.add(order)
 
 
+def check_staleness(entries: list[dict[str, Any]], stale_days: int) -> int:
+    """Warn (not fail) for guides whose `verified_on` is older than stale_days.
+    Returns the number of stale guides found (informational only)."""
+    cutoff = dt.date.today() - dt.timedelta(days=stale_days)
+    stale: list[str] = []
+    for e in entries:
+        eid = e.get("id", "?")
+        src = e.get("_source_file", "?")
+        for i, g in enumerate(e.get("guides") or []):
+            if not isinstance(g, dict):
+                continue
+            v_on = g.get("verified_on")
+            if isinstance(v_on, dt.date) and v_on < cutoff:
+                age = (dt.date.today() - v_on).days
+                stale.append(
+                    f"  [{src}::{eid} guide#{i}] verified {age}d ago "
+                    f"({v_on.isoformat()}) — {g.get('url', '?')}"
+                )
+    if stale:
+        click.echo(click.style(
+            f"⚠ {len(stale)} guide(s) older than {stale_days} days "
+            f"— consider re-verifying:", fg="yellow"))
+        for line in stale:
+            click.echo(line)
+    return len(stale)
+
+
 @click.command()
 @click.option("--quiet", is_flag=True, help="suppress success message")
-def main(quiet: bool) -> None:
+@click.option("--stale-days", type=int, default=0,
+              help="if > 0, warn for guides verified longer than this ago "
+                   "(informational; does not fail the build)")
+def main(quiet: bool, stale_days: int) -> None:
     v = V()
     entries = load_entries(v)
     for e in entries:
         validate_entry(v, e)
     check_uniqueness(v, entries)
     check_ordering(v, entries)
+    check_originals_orphans(v, entries)
     code = v.report()
     if code == 0 and not quiet:
         click.echo(f"  ({len(entries)} entries across {len(CATEGORY_FILES)} categories)")
+    if stale_days > 0:
+        check_staleness(entries, stale_days)
     sys.exit(code)
 
 

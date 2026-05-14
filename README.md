@@ -14,8 +14,10 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/content-CC--BY--4.0-blue.svg" alt="content license"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-green.svg" alt="code license"></a>
   <img src="https://img.shields.io/badge/last%20updated-2026-05-14-brightgreen.svg" alt="last updated">
-  <img src="https://img.shields.io/badge/targets-50-informational.svg" alt="target count">
-  <img src="https://img.shields.io/badge/originals-8-purple.svg" alt="originals">
+  <img src="https://img.shields.io/badge/targets-62-informational.svg" alt="target count">
+  <img src="https://img.shields.io/badge/guides-80-informational.svg" alt="guide count">
+  <img src="https://img.shields.io/badge/originals-9-purple.svg" alt="originals">
+  <img src="https://img.shields.io/badge/links-100%25%20live-brightgreen.svg" alt="link health">
 </p>
 
 ---
@@ -46,14 +48,14 @@ focused tightly on the modern AI stack.
 
 ## Table of contents
 
-1. [Foundations](#foundations) — 5 targets · 7 guides
-1. [The Model](#the-model) — 9 targets · 18 guides
-1. [Training](#training) — 11 targets · 14 guides
-1. [Inference](#inference) — 6 targets · 8 guides
-1. [Retrieval](#retrieval) — 6 targets · 6 guides
-1. [Agents](#agents) — 5 targets · 4 guides
+1. [Foundations](#foundations) — 7 targets · 9 guides
+1. [The Model](#the-model) — 11 targets · 21 guides
+1. [Training](#training) — 13 targets · 17 guides
+1. [Inference](#inference) — 7 targets · 8 guides
+1. [Retrieval](#retrieval) — 7 targets · 7 guides
+1. [Agents](#agents) — 8 targets · 9 guides
 1. [Evaluation](#evaluation) — 3 targets · 2 guides
-1. [Beyond Text](#beyond-text) — 5 targets · 6 guides
+1. [Beyond Text](#beyond-text) — 6 targets · 7 guides
 
 ---
 
@@ -101,6 +103,22 @@ _The machinery before the model._
 **What you'll understand after:** Why every modern transformer block sandwiches sub-layers with normalization — and what the gain / bias parameters are doing.
 
 - [**Python**: _Layer Normalization (annotated PyTorch implementation)_](https://nn.labml.ai/normalization/layer_norm/index.html) — labml.ai · written · free
+
+#### Weight initialization (Xavier / Kaiming) <sub>★☆☆ · easy</sub>
+
+**What you build:** Xavier (Glorot) and Kaiming (He) initialization from scratch — derived from the variance-preservation requirement and verified empirically by tracking activation variance across layers.
+
+**What you'll understand after:** Why a deep net's loss explodes-then-flattens with naive `randn` init, and why the right initializer keeps gradients alive through 50+ layers.
+
+- [**Python**: _Tutorial 3: Initialization and Optimization (UvA Deep Learning)_](https://lightning.ai/docs/pytorch/stable/notebooks/course_UvA-DL/03-initialization-and-optimization.html) — Phillip Lippe (UvA / PyTorch Lightning) · course · free
+
+#### Dropout <sub>★☆☆ · easy</sub>
+
+**What you build:** Inverted dropout from scratch — Bernoulli masking, the 1/(1−p) scale at training time, and the eval-mode passthrough.
+
+**What you'll understand after:** Why dropout is regularization, why the scale factor lives at train time (not eval), and why monitoring train/val gap is the only way to set p.
+
+- [**Python**: _Regularization from Scratch — Dropout_](https://nilanjanchattopadhyay.github.io/basics/2020/04/20/Regularization-from-Scratch-Dropout.html) — Nilanjan Chattopadhyay · written · free
 
 ### The Model
 _Attention to a full small LM._
@@ -185,6 +203,23 @@ _Attention to a full small LM._
 **What you'll understand after:** Why SSMs handle long sequences cheaply, and where they trade off against attention.
 
 - [**Python**: _mamba-minimal_](https://github.com/johnma2006/mamba-minimal) — John Ma · code · free
+
+#### Activations (GELU, SiLU, SwiGLU) <sub>★★☆ · afternoon</sub>
+
+**What you build:** GELU and SiLU (Swish) implemented from their definitions, then assembled into SwiGLU — the gated FFN that every post-2023 frontier LLM (LLaMA, Mistral, DeepSeek, Qwen, Gemma) uses.
+
+**What you'll understand after:** Why the FFN in modern LLMs is not `Linear → ReLU → Linear` but a gated three-matrix variant, and how a one-line tweak (`F.silu(W1·x) * W3·x`) shows up in every state-of-the-art checkpoint.
+
+- [**Python**: _What Is SwiGLU? How to Implement It? And Why Does It Work?_](https://azizbelaweid.substack.com/p/what-is-swiglu-how-to-implement-it) — Aziz Belaweid · written · free
+
+#### Flash Attention <sub>★★★ · weekend</sub>
+
+**What you build:** Flash Attention's tiled / online-softmax algorithm from scratch — first in plain PyTorch for algorithmic clarity, then (optionally) in a Triton kernel to see where the speedup actually comes from.
+
+**What you'll understand after:** Why Flash Attention is faster *and* uses less memory than naive attention — it never materializes the full N×N attention matrix — and why the same recipe (FA1 → FA2 → FA3 → FA4) keeps showing up in every fast-inference paper.
+
+- [**Python**: _FlashAttention-PyTorch (FA1–FA4, educational)_](https://github.com/shreyansh26/FlashAttention-PyTorch) — Shreyansh Singh · code · free
+- [**Python**: _Understanding Flash Attention — Writing the Algorithm from Scratch in Triton_](https://alexdremov.me/understanding-flash-attention-writing-the-algorithm-from-scratch-in-triton/) — Alex Dremov · written · free
 
 ### Training
 _How models learn._
@@ -273,7 +308,7 @@ _How models learn._
 
 - [**Python**: _DPO from scratch (LLMs-from-scratch Ch 7.4)_](https://github.com/rasbt/LLMs-from-scratch/blob/main/ch07/04_preference-tuning-with-dpo/dpo-from-scratch.ipynb) — Sebastian Raschka · code · free
 
-#### PPO / GRPO-style RL loop <sub>★★★ · weekend</sub>
+#### PPO-style RL loop (RLHF) <sub>★★★ · weekend</sub>
 
 **What you build:** A miniature RL post-training loop — policy update with KL penalty and advantage estimation, on a tiny model.
 
@@ -281,6 +316,23 @@ _How models learn._
 
 - [**Python**: _lm-human-preference-details (PyTorch reproduction of OpenAI's RLHF)_](https://github.com/vwxyzjn/lm-human-preference-details) — Shengyi Costa Huang · code · free
 - [**Python**: _The N Implementation Details of RLHF with PPO_](https://huggingface.co/blog/the_n_implementation_details_of_rlhf_with_ppo) — Shengyi Costa Huang, Tianlin Liu, Leandro von Werra (Hugging Face) · written · free
+
+#### Knowledge distillation <sub>★★☆ · afternoon</sub>
+
+**What you build:** A teacher → student distillation: the soft-label loss (KL-div on temperature-scaled logits) combined with the hard-label cross-entropy, training a small student to recover most of a big teacher's accuracy.
+
+**What you'll understand after:** Why you can compress a 70B model into a 7B model with most of the quality intact — and why the student often *outperforms* the same architecture trained from labels alone.
+
+- [**Python**: _Knowledge Distillation Tutorial (official PyTorch)_](https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html) — Alexandros Chariton · written · free
+- [**Python**: _Distilling the Knowledge in a Neural Network (annotated PyTorch)_](https://nn.labml.ai/distillation/index.html) — labml.ai · written · free
+
+#### GRPO (DeepSeek-R1 style) <sub>★★★ · weekend</sub>
+
+**What you build:** Group Relative Policy Optimization from scratch — sample G completions per prompt, score them with a verifiable reward, normalize advantages within the group, and update the policy with a clipped PPO-style objective and KL penalty.
+
+**What you'll understand after:** Why DeepSeek-R1 ditched the value model and what that buys (less memory, simpler training) — and why GRPO is the algorithm behind the recent reasoning-model wave.
+
+- [**Python**: _GRPO-Zero — DeepSeek-R1's GRPO from scratch_](https://github.com/policy-gradient/GRPO-Zero) — policy-gradient (open-source contributors) · code · free
 
 ### Inference
 _Making a trained model useful._
@@ -326,6 +378,14 @@ _Making a trained model useful._
 
 - [**Python**: _lm-watermarking (official Kirchenbauer et al. implementation)_](https://github.com/jwkirchenbauer/lm-watermarking) — John Kirchenbauer (paper authors) · code · free
 - [**Python**: _LMWatermark (educational PyTorch re-implementation)_](https://github.com/BrianPulfer/LMWatermark) — Brian Pulfer · code · free
+
+#### Structured / constrained decoding (JSON, regex, grammar) <sub>★★☆ · afternoon</sub>
+
+**What you build:** Logit-masked decoding that constrains generation to a regex, JSON-schema, or context-free grammar — by compiling the constraint into a finite-state machine over the vocabulary and zeroing out invalid tokens at every step.
+
+**What you'll understand after:** Why 'structured output' isn't an LLM capability — it's the *sampler's* job — and why the same FSM-over-vocab trick underpins Outlines, XGrammar, vLLM's guided decoding, and OpenAI's strict JSON mode.
+
+> _Gap target — original starter guide planned in [`originals/structured-decoding.md`](originals/structured-decoding.md)._
 
 #### Quantization (INT8 / INT4) <sub>★★★ · weekend</sub>
 
@@ -387,6 +447,14 @@ _External memory for LMs._
 
 - [**Python**: _Code a simple RAG from scratch_](https://huggingface.co/blog/ngxson/make-your-own-rag) — Xuan-Son Nguyen (ngxson) · written · free
 
+#### GraphRAG <sub>★★★ · weekend</sub>
+
+**What you build:** Microsoft's GraphRAG pipeline from scratch — chunk → entity & relationship extraction with an LLM → knowledge-graph construction → Leiden community detection → community summarization → query-focused answer synthesis.
+
+**What you'll understand after:** Why graph-structured retrieval beats vanilla RAG on multi-hop and aggregation questions — and what the full GraphRAG paper actually does, end to end, without the framework.
+
+- [**Python**: _example-graphrag (end-to-end GraphRAG pipeline from scratch)_](https://github.com/stephenc222/example-graphrag) — Stephen Collins · code · free
+
 ### Agents
 _LMs that take actions._
 
@@ -431,6 +499,32 @@ _LMs that take actions._
 
 - [**Mixed**: _How to build a coding agent (free workshop)_](https://ghuntley.com/agent/) — Geoffrey Huntley · written · free
 - [**Python**: _Build an AI Coding Agent in Python_](https://www.freecodecamp.org/news/build-an-ai-coding-agent-in-python/) — Lane Wagner (boot.dev / freeCodeCamp) · course · free
+
+#### ReAct pattern (Reasoning + Acting) <sub>★★☆ · afternoon</sub>
+
+**What you build:** The Thought → Action → Observation loop from the original ReAct paper, with regex-based action parsing and tool dispatch — no LangChain, no LlamaIndex.
+
+**What you'll understand after:** Why 'ReAct' is a prompting pattern, not an LLM capability — and how a single regex turns text into agency.
+
+- [**Python**: _agent-implementation (basic ReAct agent from scratch)_](https://github.com/mattambrogi/agent-implementation) — Matt Ambrogi · code · free
+- [**Python**: _Create ReAct AI Agent from Scratch using Python Without any Framework_](https://shafiqulai.github.io/blogs/blog_3.html) — Shafiqul Islam Sumon · written · free
+
+#### Tree of Thoughts (deliberate reasoning) <sub>★★☆ · afternoon</sub>
+
+**What you build:** A Tree-of-Thoughts reasoner: a `ThoughtNode` tree expanded breadth-wise by repeatedly prompting the LLM for k candidate next-thoughts, traversed iteratively until a stopping condition.
+
+**What you'll understand after:** Why some problems demand search over reasoning paths instead of a single chain — and the cost trade-off you accept when you pay 2× to 10× the inference budget for it.
+
+- [**Python**: _How to Implement a Tree of Thoughts in Python_](https://stephencollins.tech/posts/how-to-implement-a-tree-of-thoughts-in-python) — Stephen Collins · written · free
+
+#### MCP server (Model Context Protocol) <sub>★★☆ · afternoon</sub>
+
+**What you build:** An MCP server and client built from scratch — first with the official Python SDK to expose tools / resources / prompts, then at the protocol level over raw STDIO + JSON-RPC to see what's actually on the wire.
+
+**What you'll understand after:** Why MCP is 'USB-C for LLMs' — and how a 20-line server unlocks Claude Desktop, Cursor, and every MCP-aware host without any per-host integration.
+
+- [**Python**: _Introduction to Model Context Protocol (official Anthropic course)_](https://anthropic.skilljar.com/introduction-to-model-context-protocol) — Anthropic · course · free
+- [**Mixed**: _Understanding MCP Through Raw STDIO Communication_](https://foojay.io/today/understanding-mcp-through-raw-stdio-communication/) — David Parry · written · free
 
 ### Evaluation
 _Knowing if it actually works._
@@ -504,6 +598,14 @@ _Vision, audio, multimodal._
 
 - [**Python**: _Building an End-to-End Speech Recognition Model in PyTorch_](https://www.assemblyai.com/blog/end-to-end-speech-recognition-pytorch) — Michael Nguyen (AssemblyAI) · written · free
 
+#### Vision-language model (VLM) <sub>★★★ · weekend</sub>
+
+**What you build:** A small vision-language model: a SigLIP image encoder + a SmolLM2 language backbone joined by a hand-written pixel-shuffle + linear *modality-projection* connector, jointly fine-tuned on image-text data — the nanoVLM recipe.
+
+**What you'll understand after:** Where the 'multi' in multimodal lives — almost entirely in the connector and the training data — and why so many modern VLMs (LLaVA, Idefics, SmolVLM, Phi-Vision) share the same template.
+
+- [**Python**: _nanoVLM: The simplest, fastest repository for training/finetuning small-sized VLMs_](https://huggingface.co/blog/nanovlm) — Aritra Roy Gosthipaty, Andrés Marafioti, Sergio Paniego et al. (Hugging Face) · written · free
+
 
 ## Originals
 
@@ -553,8 +655,8 @@ tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scrat
 
 - Scheduled weekly link-check via CI.
 - Quarterly audit of the verification log.
-- Currently: **50 build targets** · **65 guides** ·
-  **8 originals** · **8 open gaps**.
+- Currently: **62 build targets** · **80 guides** ·
+  **9 originals** · **9 open gaps**.
 
 The full curation paper trail — every accepted and rejected guide with
 evidence — lives in [`PLANNING/03_verification_log.md`](PLANNING/03_verification_log.md).

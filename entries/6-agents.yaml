@@ -91,3 +91,78 @@
       from_scratch_evidence: "Course walks through implementing the agentic loop directly against the Gemini API — no Claude Code SDK, no LangChain. Tool execution and the loop are written by the learner step by step."
       verified_on: 2026-05-14
       verifier: "bettyguo"
+
+- id: react-pattern
+  category: agents
+  order: 6
+  title: "ReAct pattern (Reasoning + Acting)"
+  what_you_build: "The Thought → Action → Observation loop from the original ReAct paper, with regex-based action parsing and tool dispatch — no LangChain, no LlamaIndex."
+  teaches: ["interleaved chain-of-thought + tool use", "regex / structured-output parsing of model output", "the PAUSE / OBSERVATION control flow"]
+  understanding: "Why 'ReAct' is a prompting pattern, not an LLM capability — and how a single regex turns text into agency."
+  difficulty: 2
+  guides:
+    - title: "agent-implementation (basic ReAct agent from scratch)"
+      url: "https://github.com/mattambrogi/agent-implementation"
+      author: "Matt Ambrogi"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "README: 'a simple implementation of the ReAct Agent Pattern for LLMs' following Simon Willison's approach. Three files only — `agent.py`, `tools.py`, `chat.py` — the Thought / Action / PAUSE / Observation loop is parsed and dispatched in pure Python; no agent framework."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Create ReAct AI Agent from Scratch using Python Without any Framework"
+      url: "https://shafiqulai.github.io/blogs/blog_3.html"
+      author: "Shafiqul Islam Sumon"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Article's stated motivation: 'building a ReAct AI Agent from scratch, without using any framework.' Manual action parsing (`action_start = response.find('Action:')`), Python introspection for tool registration, and the loop driver are written out step by step. Companion repo at github.com/shafiqul-islam-sumon/ReAct-Agent-from-Scratch."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: tree-of-thoughts
+  category: agents
+  order: 7
+  title: "Tree of Thoughts (deliberate reasoning)"
+  what_you_build: "A Tree-of-Thoughts reasoner: a `ThoughtNode` tree expanded breadth-wise by repeatedly prompting the LLM for k candidate next-thoughts, traversed iteratively until a stopping condition."
+  teaches: ["thought decomposition", "branching search over LM outputs", "ToT vs CoT — when deliberation actually helps"]
+  understanding: "Why some problems demand search over reasoning paths instead of a single chain — and the cost trade-off you accept when you pay 2× to 10× the inference budget for it."
+  difficulty: 2
+  guides:
+    - title: "How to Implement a Tree of Thoughts in Python"
+      url: "https://stephencollins.tech/posts/how-to-implement-a-tree-of-thoughts-in-python"
+      author: "Stephen Collins"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Hand-written `ThoughtNode` class (`thought` + `children` list); `explore_thoughts` prompts the model for two next-thoughts per leaf and grows the tree; `run` iterates the expansion. Built directly on Anthropic's API — no ToT framework. Published 2024-07-05."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: mcp-server
+  category: agents
+  order: 8
+  title: "MCP server (Model Context Protocol)"
+  what_you_build: "An MCP server and client built from scratch — first with the official Python SDK to expose tools / resources / prompts, then at the protocol level over raw STDIO + JSON-RPC to see what's actually on the wire."
+  teaches: ["MCP's three primitives (tools / resources / prompts)", "JSON-RPC 2.0 message framing", "STDIO transport and the init handshake"]
+  understanding: "Why MCP is 'USB-C for LLMs' — and how a 20-line server unlocks Claude Desktop, Cursor, and every MCP-aware host without any per-host integration."
+  difficulty: 2
+  guides:
+    - title: "Introduction to Model Context Protocol (official Anthropic course)"
+      url: "https://anthropic.skilljar.com/introduction-to-model-context-protocol"
+      author: "Anthropic"
+      kind: course
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Official Anthropic course; the curriculum builds MCP servers using the Python SDK directly with the three primitives (tools / resources / prompts) and a server-inspector test loop — no third-party framework wrapping the SDK. Free; no Claude API key required for the server portion."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Understanding MCP Through Raw STDIO Communication"
+      url: "https://foojay.io/today/understanding-mcp-through-raw-stdio-communication/"
+      author: "David Parry"
+      kind: written
+      language: "Mixed"
+      cost: free
+      from_scratch_evidence: "Article's stated goal: 'No frameworks, no magic — just the protocol in its purest form.' Walks the four-phase STDIO lifecycle with literal JSON-RPC messages on the wire (`initialize`, `roots/list`, the bidirectional notification path) and an `IOHandler` built on stdlib `Scanner` / `PrintWriter` only. Published 2025-07-17."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

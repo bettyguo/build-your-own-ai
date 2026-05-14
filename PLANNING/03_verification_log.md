@@ -14,15 +14,16 @@ primarily library configuration or product/framework wrapping.
 
 ## Summary
 
-- **50** build targets across 8 categories (+10 added across expansion phases).
-- **65** verified guides accepted across **42** targets.
-- **8** targets ship as open `gap`. **All 8** are filled by originals/.
-- **10** guides were considered and rejected (reasons logged below).
+- **62** build targets across 8 categories (+expansion phases 7, 8, 9).
+- **80** verified guides accepted across **53** targets.
+- **9** targets ship as open `gap`. **All 9** are filled by originals/.
+- **17** guides were considered and rejected (reasons logged below).
 - **1** mid-research scope change: KV cache was originally tier-1 of the
   `originals/` plan; verification surfaced two excellent existing
   from-scratch guides, so KV cache now ships with curated links instead.
 
-Zero entries are unverified at launch.
+Zero entries are unverified. All 94 URLs reachable on 2026-05-14
+(`linkcheck.py --quick` green; report at `tools/linkcheck-report.md`).
 
 ### Additions from the Phase 6 hostile-review pass (2026-05-14)
 
@@ -177,6 +178,148 @@ The decision *not* to add a Safety & Alignment top-level category is
 itself documented curation work — a thin two-target category would
 have been weaker than absorbing the two verified targets into where
 they naturally fit.
+
+### Phase-10 expansion (2026-05-14)
+
+A breadth pass targeting the build-target areas that a 2026 reader
+would expect an authoritative from-scratch AI index to cover. **11 new
+build targets, 15 new verified guides, 1 new original** — every
+addition has a quoted from-scratch evidence string, the curation bar
+held, two candidates were rejected.
+
+**Foundations (+2):**
+
+- ✓ `weight-init` — Phillip Lippe (UvA-DL Tutorial 3, hosted by PyTorch
+  Lightning). Hand-written constant / variance / Xavier / Kaiming
+  initializers with the activation-variance-vanishing experiment that
+  motivates each. Educational lecture series.
+- ✓ `dropout` — Nilanjan Chattopadhyay (2020-04-20). Custom `Dropout`
+  with `bernoulli_` masking, inverted-dropout `(out * mask) / (1 - p)`
+  scaling at training, and `if self.training` eval-mode passthrough.
+  PyTorch's `nn.Dropout` is shown afterward for contrast only.
+
+**Model (+2):**
+
+- ✓ `activations` — Aziz Belaweid's "What Is SwiGLU? How to Implement
+  It?" (2024-03-13). Hand-written `class SwiGLU(nn.Module)` with the
+  `F.silu(W1·x) * W3·x` gating; the GLU family derivation accompanies.
+- ✓ `flash-attention` — two complementary refs: Shreyansh Singh's
+  `FlashAttention-PyTorch` (FA1–FA4 in plain PyTorch for algorithmic
+  clarity, no CUDA) + Alex Dremov's annotated Triton walkthrough
+  (2025-01-12) with the tiled / online-softmax pseudocode and the
+  running-max + running-denominator recurrence.
+
+**Training (+1 new target + 1 carved-out target):**
+
+- ✓ `knowledge-distillation` — official PyTorch tutorial by Alexandros
+  Chariton (manual KL on temperature-scaled softmax, the `T²` rescale,
+  hard-label CE combined; no KD library) + labml.ai's annotated
+  Hinton-et-al-2015 implementation.
+- ✓ `grpo` — `policy-gradient/GRPO-Zero`. README states "We implement
+  almost everything from scratch and only depend on `tokenizers` for
+  tokenization and `pytorch` for training." DeepSeek-R1-style GRPO
+  (group-relative advantage, no critic, clipped objective, KL penalty).
+  The original `ppo-grpo` target's title was tightened to "PPO-style RL
+  loop (RLHF)" to reflect that GRPO now has its own row.
+
+**Inference (+1 new target):**
+
+- ✓ `structured-decoding` — shipped as a `gap` with `original_planned:
+  true`. Rejected `dottxt-ai.github.io/outlines/...structured_generation_explanation/`
+  (404). Searched for a strict from-scratch FSM-over-vocab walkthrough;
+  available material is either conceptual (BentoML, vLLM blog,
+  AnalyticsVidhya, LMSYS-XGrammar) or library usage (Outlines docs).
+  Wrote `originals/structured-decoding.md` covering the toy yes/no FSM,
+  the regex FSM, the JSON-schema example, the vocab-mismatch dead-end
+  failure mode, and three honest gotchas. 80 lines of code, runnable.
+
+**Retrieval (+1):**
+
+- ✓ `graphrag` — `stephenc222/example-graphrag`. Full pipeline
+  (chunk → entity & relationship extraction → graph construction →
+  Leiden community detection → community summarization → query answer
+  synthesis) in standalone Python functions; does NOT use Microsoft's
+  `graphrag` library. Implements the "From Local to Global" paper.
+
+**Agents (+3):**
+
+- ✓ `react-pattern` — `mattambrogi/agent-implementation` ("a simple
+  implementation of the ReAct Agent Pattern", following Simon Willison;
+  three files, no framework) + Shafiqul Islam's "Create ReAct AI Agent
+  from Scratch using Python Without any Framework" article.
+- ✓ `tree-of-thoughts` — Stephen Collins, "How to Implement a Tree of
+  Thoughts in Python" (2024-07-05). Custom `ThoughtNode` (thought +
+  children list), `explore_thoughts` prompts for k next-thoughts per
+  leaf, `run` iterates expansion. Anthropic API directly; no ToT framework.
+- ✓ `mcp-server` — Anthropic's free "Introduction to Model Context
+  Protocol" course on Skilljar (official MCP Python SDK, primitives:
+  tools / resources / prompts) + David Parry's "Understanding MCP
+  Through Raw STDIO Communication" (2025-07-17, raw JSON-RPC 2.0 over
+  STDIO, stdlib only — "No frameworks, no magic — just the protocol in
+  its purest form").
+
+**Beyond Text (+1):**
+
+- ✓ `multimodal-vlm` — HF's nanoVLM blog (Aritra Roy Gosthipaty et al.).
+  The defining VLM components — the modality-projection module (pixel
+  shuffle + linear) and the joint training loop — are written from
+  scratch in PyTorch (`modality_projector.py`, `vision_language_model.py`).
+  Pretrained SigLIP + SmolLM2 backbones are reused — the same
+  backbone-reuse policy as the existing `clip` target (which uses
+  `timm` / `transformers` backbones). No `AutoModelForVision2Seq`.
+
+**Rejected during Phase-10 verification:**
+
+- ✗ HF blog "Code a simple RAG from scratch" *alternative* via
+  `learnbybuilding.ai` — see existing rejection above.
+- ✗ Anyscale "Continuous Batching" blog (2023-06-22, Cade Daniel et al.) —
+  conceptual marketing piece. "We'll cover the basics of how LLM
+  inference works and highlight inefficiencies in traditional
+  request-based dynamic batching." Points readers to vLLM / TGI; no
+  scheduler loop implemented. The `continuous-batching` target was
+  *not* added since no from-scratch reference exists.
+- ✗ Philipp Schmid's MCP intro — uses `FastMCP` decorator; abstracts
+  away JSON-RPC. The from-scratch view of MCP is the Anthropic course
+  + Parry's raw-STDIO article (both accepted above).
+- ✗ Wei-Meng Lee, "Hands-on MCP" (CODE Magazine, 2026 May/June) — same
+  reason: FastMCP-based, abstracts the JSON-RPC layer.
+- ✗ Ceshine Lee's "Implementing Beam Search Part 1" — described as
+  "source code analysis of OpenNMT-py", not a standalone implementation.
+  `beam-search` was *not* added since the existing `sampling` target
+  already includes Maxime Labonne's `beam_search` function.
+- ✗ Astarag Mohapatra's ColBERT tutorial — uses `colbert-ai`'s
+  `Indexer` / `Searcher` directly. The late-interaction mechanism is
+  described conceptually but not implemented. `colbert-late-interaction`
+  was *not* added as a target.
+- ✗ Hey Amit "Contrastive Learning of Sentence Embeddings from Scratch"
+  (2024-11-28) — title misleading; the article loads pretrained BERT
+  and only demonstrates cosine similarity, never implements the
+  contrastive loss or training loop. `sentence-embedding` was *not*
+  added.
+- ✗ Tom Aarsen's "Training and Finetuning Embedding Models" HF blog
+  (2024-05-28) — uses `sentence_transformers.losses.MultipleNegativesRankingLoss`;
+  loss + trainer abstracted by the library.
+- ✗ Akash Modi's "Logical Reasoning with ReAct Agent from Scratch (Part 1)"
+  (2024-10-05) — explicitly defers implementation to Part 2; Part 1
+  is concept-only. `react-pattern` accepted via two other refs above.
+- ✗ `FullStackRetrieval-com/RetrievalTutorials` (Greg Kamradt's "5 Levels
+  of Text Splitting") — notebook header states "This tutorial will use
+  code from LangChain & Llama Index"; Levels 1–4 are LangChain wrappers.
+  A `chunking-strategies` target was *not* added, since accepting it
+  would require lowering the curation bar to admit a library tutorial
+  as "from scratch."
+
+### Phase-10 tooling improvements
+
+- `validate_entries.py --stale-days N` — opt-in currency check that
+  warns (does not fail) for any guide whose `verified_on` is older
+  than N days. Use case: quarterly audit trigger.
+- `validate_entries.py` now also runs an *orphan originals* guard:
+  every file in `originals/*.md` (except `README.md`) must correspond
+  to an entry with `original_planned: true`. Catches half-deleted gaps
+  and stray files.
+- `README.md.tmpl` gained two badges: live guide count and a
+  link-health pill.
 
 ---
 

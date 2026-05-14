@@ -21,6 +21,7 @@ reader never mistakes it for a curated link.
 | [`reranker.md`](reranker.md) | Cross-encoder from scratch — every other tutorial routes through `sentence-transformers`. |
 | [`tool-layer.md`](tool-layer.md) | A schema-validated tool dispatcher with the JSON-validation + error-recovery patterns that frameworks hide. |
 | [`eval-harness.md`](eval-harness.md) | Task / runner / scorer / reporter — the four-abstraction kernel of `lm-evaluation-harness`. |
+| [`structured-decoding.md`](structured-decoding.md) | FSM-over-vocabulary logit masking — the actual mechanism behind Outlines / XGrammar / OpenAI's strict JSON mode, in ~80 lines. |
 
 Note: KV cache was originally planned as an `originals/` candidate. During
 Phase 3 verification, Sebastian Raschka's "Understanding and Coding the KV
@@ -29,9 +30,13 @@ nanoVLM" were both found to cover it cleanly — so the target ships with
 verified guides rather than an original. This is the verification process
 working as intended.
 
-The four additional originals (lr-schedule, reranker, tool-layer, eval-harness)
-were written after two research sweeps confirmed those targets genuinely
-lack public from-scratch guides — they fill verified gaps, not padding.
+The first four additional originals (lr-schedule, reranker, tool-layer,
+eval-harness) were written after two research sweeps confirmed those
+targets genuinely lack public from-scratch guides. The Phase-9 sweep added
+**structured-decoding** on the same basis — public material is either
+conceptual (Anyscale / BentoML / vLLM blog posts) or library usage
+(Outlines / XGrammar docs); a strict from-scratch FSM-over-vocab walkthrough
+was missing.
 
 ## Style
 

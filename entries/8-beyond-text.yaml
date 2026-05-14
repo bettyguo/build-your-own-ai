@@ -103,3 +103,22 @@
       from_scratch_evidence: "Builds a Deep-Speech-2-style architecture (residual CNNs + bidirectional GRUs) end to end in PyTorch, trained with the CTC loss — no pretrained Wav2Vec2 / Whisper checkpoint."
       verified_on: 2026-05-14
       verifier: "bettyguo"
+
+- id: multimodal-vlm
+  category: beyond-text
+  order: 6
+  title: "Vision-language model (VLM)"
+  what_you_build: "A small vision-language model: a SigLIP image encoder + a SmolLM2 language backbone joined by a hand-written pixel-shuffle + linear *modality-projection* connector, jointly fine-tuned on image-text data — the nanoVLM recipe."
+  teaches: ["modality projection / connector design", "joint vision + language training", "patch-token / text-token interleaving in a decoder"]
+  understanding: "Where the 'multi' in multimodal lives — almost entirely in the connector and the training data — and why so many modern VLMs (LLaVA, Idefics, SmolVLM, Phi-Vision) share the same template."
+  difficulty: 3
+  guides:
+    - title: "nanoVLM: The simplest, fastest repository for training/finetuning small-sized VLMs"
+      url: "https://huggingface.co/blog/nanovlm"
+      author: "Aritra Roy Gosthipaty, Andrés Marafioti, Sergio Paniego et al. (Hugging Face)"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "The VLM's *defining* component — the modality-projection module (pixel shuffle + linear) and the joint training loop — are written from scratch in PyTorch (see `models/modality_projector.py` and `models/vision_language_model.py`). Pretrained SigLIP + SmolLM2 backbones are reused (the same pattern as the `clip` target uses `timm`/`transformers` backbones). No `AutoModelForVision2Seq` or VLM library."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

@@ -251,3 +251,50 @@
       from_scratch_evidence: "Single-file pure-PyTorch Mamba in ~200 lines. README explicitly states the official `mamba_ssm` CUDA kernel is *not* used — the SSM block is implemented in PyTorch primitives for readability."
       verified_on: 2026-05-14
       verifier: "bettyguo"
+
+- id: activations
+  category: model
+  order: 10
+  title: "Activations (GELU, SiLU, SwiGLU)"
+  what_you_build: "GELU and SiLU (Swish) implemented from their definitions, then assembled into SwiGLU — the gated FFN that every post-2023 frontier LLM (LLaMA, Mistral, DeepSeek, Qwen, Gemma) uses."
+  teaches: ["smooth approximations to ReLU", "gated linear units (GLU family)", "FFN expansion ratio with a gating branch"]
+  understanding: "Why the FFN in modern LLMs is not `Linear → ReLU → Linear` but a gated three-matrix variant, and how a one-line tweak (`F.silu(W1·x) * W3·x`) shows up in every state-of-the-art checkpoint."
+  difficulty: 2
+  guides:
+    - title: "What Is SwiGLU? How to Implement It? And Why Does It Work?"
+      url: "https://azizbelaweid.substack.com/p/what-is-swiglu-how-to-implement-it"
+      author: "Aziz Belaweid"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Hand-written `class SwiGLU(nn.Module)` — the forward is `F.silu(W1·x) * W3·x` composed with `W2`, all in three linear layers; the article also derives the formula from the GLU family. No reliance on `nn.GLU` for the gating."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: flash-attention
+  category: model
+  order: 11
+  title: "Flash Attention"
+  what_you_build: "Flash Attention's tiled / online-softmax algorithm from scratch — first in plain PyTorch for algorithmic clarity, then (optionally) in a Triton kernel to see where the speedup actually comes from."
+  teaches: ["tiling Q/K/V", "online (running-max) softmax", "IO-aware attention vs the naive O(N²) materialization"]
+  understanding: "Why Flash Attention is faster *and* uses less memory than naive attention — it never materializes the full N×N attention matrix — and why the same recipe (FA1 → FA2 → FA3 → FA4) keeps showing up in every fast-inference paper."
+  difficulty: 3
+  guides:
+    - title: "FlashAttention-PyTorch (FA1–FA4, educational)"
+      url: "https://github.com/shreyansh26/FlashAttention-PyTorch"
+      author: "Shreyansh Singh"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "README states the goal explicitly: 'correctness and clarity, not CUDA-level performance. Each version keeps the same exact attention math while changing the orchestration so the algorithmic differences are visible in plain PyTorch.' FA1–FA4 are each implemented in plain PyTorch with tiling / online softmax / sequence-parallelism made visible."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Understanding Flash Attention — Writing the Algorithm from Scratch in Triton"
+      url: "https://alexdremov.me/understanding-flash-attention-writing-the-algorithm-from-scratch-in-triton/"
+      author: "Alex Dremov"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Walks the algorithm with annotated pseudocode close to the actual Triton kernel — tiled QK^T, the running-max + running-denominator online softmax (`l(x) = e^(m₁−m)·l₁ + e^(0)·l₂`), and the dynamic accumulation of the output tile. Links to the full kernel.py companion. Published 2025-01-12."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
