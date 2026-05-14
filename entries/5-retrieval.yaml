@@ -1,0 +1,56 @@
+# Category: Retrieval — external memory for LMs.
+
+- id: bm25
+  category: retrieval
+  order: 1
+  title: "BM25 from scratch"
+  what_you_build: "Lexical retrieval scoring — the classical TF-IDF descendant that still wins on many real benchmarks."
+  teaches: ["term frequency", "inverse document frequency", "length normalization"]
+  understanding: "Why the boring lexical baseline is hard to beat — and why pure vector search alone is rarely enough."
+  difficulty: 1
+  guides: []
+  gap: true
+
+- id: vector-search
+  category: retrieval
+  order: 2
+  title: "Vector search (brute force → HNSW)"
+  what_you_build: "A brute-force nearest-neighbor index, then a from-scratch HNSW implementation — the algorithm behind most vector databases."
+  teaches: ["L2 / cosine", "approximate vs exact NN", "HNSW graph construction"]
+  understanding: "What every vector DB is actually doing in its hot path, and where the speed comes from."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: hybrid-search
+  category: retrieval
+  order: 3
+  title: "Hybrid search (BM25 + vector)"
+  what_you_build: "A retriever that combines BM25 and dense scores — with Reciprocal Rank Fusion and learned weighting compared head to head."
+  teaches: ["score fusion", "RRF", "lexical / semantic complementarity"]
+  understanding: "Why production retrieval is almost never one model — and how the fusion choices change recall."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: reranker
+  category: retrieval
+  order: 4
+  title: "Reranker (cross-encoder)"
+  what_you_build: "A cross-encoder that scores (query, document) pairs — trained from scratch on a small relevance dataset."
+  teaches: ["bi-encoder vs cross-encoder", "two-stage retrieval", "training relevance models"]
+  understanding: "Why the best retrieval pipelines are always 'retrieve cheap, rerank expensive,' and what that actually buys you."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: rag-pipeline
+  category: retrieval
+  order: 5
+  title: "End-to-end RAG pipeline (no frameworks)"
+  what_you_build: "Chunk → embed → retrieve → answer, in plain Python — no LangChain, no LlamaIndex, no vector DB SDK."
+  teaches: ["chunking strategies", "context stuffing", "answer grounding"]
+  understanding: "What RAG frameworks actually do, why most of the value is in the chunking + retrieval + prompt, and where they hide complexity."
+  difficulty: 2
+  guides: []
+  gap: true

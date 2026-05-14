@@ -1,0 +1,46 @@
+# Category: Foundations — the machinery before the model.
+# Edit only YAML; the README is regenerated.
+
+- id: tokenizer-bpe
+  category: foundations
+  order: 1
+  title: "Tokenizer (BPE)"
+  what_you_build: "A byte-pair-encoding tokenizer that turns raw text into a vocabulary of subword tokens — the same idea that powers GPT-class tokenizers."
+  teaches: ["subword tokenization", "vocab construction", "merges"]
+  understanding: "Why models see tokens, not characters or words — and why that single decision shapes every downstream cost and behavior."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: embedding-layer
+  category: foundations
+  order: 2
+  title: "Embedding layer"
+  what_you_build: "A learned lookup table that maps token IDs to dense vectors — the entry point every modern LM shares."
+  teaches: ["lookup tables", "dense representations", "tied vs untied embeddings"]
+  understanding: "How discrete tokens become differentiable vectors, why dimensionality choices matter, and why the same matrix often ties to the output head."
+  difficulty: 1
+  guides: []
+  gap: true
+
+- id: autograd-micro
+  category: foundations
+  order: 3
+  title: "Autograd / micro-framework"
+  what_you_build: "A scalar-valued autograd engine with reverse-mode differentiation — the kernel of PyTorch/JAX in ~150 lines."
+  teaches: ["computational graphs", "reverse-mode autodiff", "the chain rule in code"]
+  understanding: "Why neural networks are 'just' big differentiable functions, and what every deep-learning framework is doing under the hood."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: backprop-by-hand
+  category: foundations
+  order: 4
+  title: "Backprop by hand on an MLP"
+  what_you_build: "A multi-layer perceptron trained on a toy task with gradients computed manually, then verified against autograd."
+  teaches: ["chain rule", "gradient flow", "vanishing/exploding gradients"]
+  understanding: "The gradient flow through every layer — so 'why is loss not going down' stops being a black box."
+  difficulty: 2
+  guides: []
+  gap: true

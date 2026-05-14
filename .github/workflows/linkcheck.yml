@@ -1,0 +1,35 @@
+name: linkcheck (scheduled)
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # every Monday 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/requirements.txt
+      - run: pip install -r tools/requirements.txt
+      - name: Full link-check
+        id: linkcheck
+        run: python tools/linkcheck.py --full
+        continue-on-error: true
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linkcheck-report
+          path: tools/linkcheck-report.md
+      - name: Open / update tracking issue on failure
+        if: steps.linkcheck.outcome != 'success'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Link-check failures — week of ${{ github.run_id }}"
+          content-filepath: tools/linkcheck-report.md
+          labels: broken-link, automated

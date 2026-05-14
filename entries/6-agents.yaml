@@ -1,0 +1,58 @@
+# Category: Agents — LMs that take actions.
+
+- id: agent-loop
+  category: agents
+  order: 1
+  title: "Agent loop"
+  what_you_build: "The reason → act → observe → repeat loop — the kernel of every agentic AI system — written from scratch."
+  teaches: ["the LLM control flow", "termination conditions", "the tool-call cycle"]
+  understanding: "Why 'agent' is a loop, not a framework — and how a few hundred lines reproduces the spine of Claude Code / Gemini CLI / Cursor agent mode."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: tool-layer
+  category: agents
+  order: 2
+  title: "Tool / function-calling layer"
+  what_you_build: "A schema-validated tool dispatcher: declare tools, validate the model's JSON arguments, execute, feed results back."
+  teaches: ["JSON-Schema validation", "tool routing", "error recovery"]
+  understanding: "What 'tool use' actually is at the wire level, why broken JSON is the most common bug, and how to keep the loop alive when a tool fails."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: agent-memory
+  category: agents
+  order: 3
+  title: "Agent memory (short + long term)"
+  what_you_build: "A two-tier memory: a recent-message buffer + a vector-recall long-term store — written without a memory framework."
+  teaches: ["context-window budgeting", "summarization", "retrieval-augmented memory"]
+  understanding: "How agents stay coherent across long sessions without unbounded context — and where naive approaches break."
+  difficulty: 2
+  guides: []
+  gap: true
+  original_planned: true
+
+- id: multi-agent
+  category: agents
+  order: 4
+  title: "Multi-agent orchestration"
+  what_you_build: "A planner + workers loop from scratch — no CrewAI, no AutoGen — coordinating multiple LM roles on one task."
+  teaches: ["role specialization", "message passing", "termination across agents"]
+  understanding: "When multi-agent is genuinely better than one good agent, and when it's a coordination cost masquerading as cleverness."
+  difficulty: 3
+  guides: []
+  gap: true
+  original_planned: true
+
+- id: coding-agent
+  category: agents
+  order: 5
+  title: "Coding agent (file edits + shell)"
+  what_you_build: "A minimal Claude-Code-style agent: read/edit files, run shell commands, observe results, iterate to a goal."
+  teaches: ["filesystem tools", "shell sandboxing", "diff-based edits"]
+  understanding: "What today's coding agents actually do under the hood — and why prompt + tools + loop is most of the magic."
+  difficulty: 3
+  guides: []
+  gap: true

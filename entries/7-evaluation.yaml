@@ -1,0 +1,35 @@
+# Category: Evaluation — knowing if it actually works.
+
+- id: eval-harness
+  category: evaluation
+  order: 1
+  title: "Eval harness"
+  what_you_build: "A pluggable task runner: task → prompt template → model call → score — the miniature of `lm-evaluation-harness`."
+  teaches: ["task abstraction", "metric plumbing", "reproducibility"]
+  understanding: "Why eval harnesses are 80% data engineering and how to keep results comparable across model versions."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: llm-as-judge
+  category: evaluation
+  order: 2
+  title: "LLM-as-judge"
+  what_you_build: "Pairwise and pointwise judge prompts, agreement statistics, and a position-bias sanity check — on a small eval set."
+  teaches: ["pairwise comparison", "pointwise scoring", "judge biases (position, length, self-preference)"]
+  understanding: "When LLM-as-judge is reliable, when it's a circular argument, and how to measure that line."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: calibration-hallucination
+  category: evaluation
+  order: 3
+  title: "Calibration / hallucination check"
+  what_you_build: "Confidence vs. accuracy curves on a QA dataset — measuring whether the model's stated confidence tracks its real correctness."
+  teaches: ["expected calibration error", "selective prediction", "confidence elicitation"]
+  understanding: "Why 'the model said it was sure' is worthless unless you've measured the calibration — and how to actually measure it."
+  difficulty: 3
+  guides: []
+  gap: true
+  original_planned: true

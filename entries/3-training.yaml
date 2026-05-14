@@ -1,0 +1,90 @@
+# Category: Training — how models learn.
+
+- id: training-loop
+  category: training
+  order: 1
+  title: "Training loop"
+  what_you_build: "A complete training loop: data loader, forward pass, loss, optimizer step, eval, checkpointing — the mechanics every book glosses over."
+  teaches: ["mini-batching", "loss/eval logging", "checkpointing"]
+  understanding: "Why training infrastructure is most of the work even when the model code is a few hundred lines."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: optimizer-from-scratch
+  category: training
+  order: 2
+  title: "Optimizer (SGD → Adam → AdamW)"
+  what_you_build: "SGD with momentum, then Adam, then AdamW — implemented from scratch and compared on the same toy problem."
+  teaches: ["momentum", "adaptive learning rates", "weight decay vs L2"]
+  understanding: "Why AdamW dominates LLM pretraining and what every term in the update rule is doing."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: lr-schedule
+  category: training
+  order: 3
+  title: "Learning-rate schedule"
+  what_you_build: "Linear warmup + cosine decay schedule, plotted against loss curves on a small training run."
+  teaches: ["warmup", "cosine decay", "schedule interaction with batch size"]
+  understanding: "Why almost every modern run uses this exact shape and how badly things break without warmup."
+  difficulty: 1
+  guides: []
+  gap: true
+
+- id: mixed-precision
+  category: training
+  order: 4
+  title: "Mixed precision + gradient accumulation"
+  what_you_build: "FP16/BF16 forward pass with FP32 master weights, plus gradient accumulation to simulate large batches on small GPUs."
+  teaches: ["dtype trade-offs", "loss scaling", "effective batch size"]
+  understanding: "The practical scaling tricks that turn a 'too big to fit' run into one you can actually do."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: sft
+  category: training
+  order: 5
+  title: "Supervised fine-tuning (SFT)"
+  what_you_build: "Fine-tune a small base LM on an instruction dataset — the first half of every modern post-training pipeline."
+  teaches: ["instruction following", "loss masking on prompts", "learning rate for SFT"]
+  understanding: "Why the same base model can become a chatbot, a coding assistant, or a math tutor depending purely on the SFT data."
+  difficulty: 2
+  guides: []
+  gap: true
+
+- id: reward-model
+  category: training
+  order: 6
+  title: "Reward model"
+  what_you_build: "Train a reward model on pairwise preference data — the scoring function that drives every RLHF-style pipeline."
+  teaches: ["pairwise ranking loss", "preference data", "reward hacking"]
+  understanding: "How human preferences become a differentiable signal — and why this single object is RLHF's most fragile component."
+  difficulty: 3
+  guides: []
+  gap: true
+  original_planned: true
+
+- id: dpo
+  category: training
+  order: 7
+  title: "DPO / preference tuning"
+  what_you_build: "A Direct Preference Optimization loop that aligns a model from preferences alone — no separate reward model, no RL."
+  teaches: ["DPO loss", "implicit reward", "reference model KL"]
+  understanding: "Why DPO replaced RLHF for many teams, and the trade-offs it makes."
+  difficulty: 3
+  guides: []
+  gap: true
+
+- id: ppo-grpo
+  category: training
+  order: 8
+  title: "PPO / GRPO-style RL loop"
+  what_you_build: "A miniature RL post-training loop — policy update with KL penalty and advantage estimation, on a tiny model."
+  teaches: ["policy gradients", "KL regularization", "advantage estimation"]
+  understanding: "What the 'RL' in RLHF actually does, and where it differs from classic RL."
+  difficulty: 3
+  guides: []
+  gap: true

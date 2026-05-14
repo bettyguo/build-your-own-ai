@@ -1,0 +1,34 @@
+# Category: Beyond Text — vision, audio, multimodal.
+
+- id: diffusion-ddpm
+  category: beyond-text
+  order: 1
+  title: "Diffusion model (DDPM)"
+  what_you_build: "A toy image diffusion model — forward noising, reverse denoising, training a U-Net to predict noise."
+  teaches: ["forward / reverse processes", "score / noise prediction", "the variance schedule"]
+  understanding: "Why a model trained to predict noise can generate images, and how DDPM/DDIM/etc. relate."
+  difficulty: 3
+  guides: []
+  gap: true
+
+- id: clip
+  category: beyond-text
+  order: 2
+  title: "CLIP-style contrastive model"
+  what_you_build: "A small dual-encoder (image + text) trained with an InfoNCE contrastive loss — multimodal alignment from scratch."
+  teaches: ["contrastive learning", "InfoNCE", "modality alignment"]
+  understanding: "How a single embedding space can host both modalities, and why CLIP-style models underpin most modern multimodal systems."
+  difficulty: 3
+  guides: []
+  gap: true
+
+- id: asr-ctc
+  category: beyond-text
+  order: 3
+  title: "Speech recognition (CTC)"
+  what_you_build: "A toy automatic-speech-recognition model: audio features → encoder → CTC loss → greedy decoding."
+  teaches: ["audio feature extraction (mel-spectrogram)", "CTC alignment", "blank-token decoding"]
+  understanding: "How variable-length audio aligns to text without forced alignment, and why CTC is still the workhorse loss for ASR."
+  difficulty: 3
+  guides: []
+  gap: true

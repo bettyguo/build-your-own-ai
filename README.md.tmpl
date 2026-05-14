@@ -1,0 +1,119 @@
+<p align="center">
+  <img src="assets/banner.png" alt="build-your-own-ai" width="720" onerror="this.style.display='none'">
+</p>
+
+<h1 align="center">build-your-own-ai</h1>
+
+<p align="center">
+  <strong>Master modern AI by building it from scratch.</strong><br>
+  A curated index of the best build-it-yourself guides for tokenizers,
+  attention, training loops, RAG, agents, evals, and more.
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/content-CC--BY--4.0-blue.svg" alt="content license"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-green.svg" alt="code license"></a>
+  <img src="https://img.shields.io/badge/last%20updated-{{ last_updated }}-brightgreen.svg" alt="last updated">
+  <img src="https://img.shields.io/badge/targets-{{ target_count }}-informational.svg" alt="target count">
+  <img src="https://img.shields.io/badge/originals-{{ original_count }}-purple.svg" alt="originals">
+</p>
+
+---
+
+## Why this exists
+
+You don't really understand the AI stack until you've built it from scratch.
+
+This is the curated index of the best guides that teach by **reimplementation** —
+no "use library X" tutorials, no thin product walkthroughs, no framework
+configurators. Every entry teaches you the thing by making you build the thing.
+
+Modeled on the [`build-your-own-x`](https://github.com/codecrafters-io/build-your-own-x)
+format (the most-starred repository on GitHub, ~500k stars). Same recipe,
+focused tightly on the modern AI stack.
+
+## How to use this
+
+- Each category is a **layer of the stack**, ordered by difficulty.
+- Each build target lists **1–3 verified from-scratch guides**, plus *what
+  you'll understand after* working through them.
+- Difficulty: `★☆☆` easy · `★★☆` real but tractable in an afternoon ·
+  `★★★` weekend project.
+- `[original]` = an in-repo starter guide for a target where no good public
+  guide exists yet (see [`originals/`](originals/)).
+
+## Table of contents
+
+{{ toc }}
+
+---
+
+{{ sections }}
+
+## Originals
+
+Short from-scratch starter guides for build targets where no good public guide
+exists today. These are the **differentiation lever** of this repo — written
+to fill the worst gaps, not to author an alternative textbook.
+
+See [`originals/`](originals/) for the full set.
+
+## Scope (what's in, what's out)
+
+**IN:** from-scratch builds of components of the modern AI stack — tokenizers,
+attention, training loops, KV caches, RAG, agents, evals, diffusion, …
+
+**OUT:** general programming builds (see [`build-your-own-x`](https://github.com/codecrafters-io/build-your-own-x));
+"use library X" tutorials; product / framework directories; broad career
+roadmaps; interview prep.
+
+## Peers
+
+Three sibling repositories — each owns its own noun:
+
+- [**`ai-engineer-roadmap`**](https://github.com/bettyguo/ai-engineer-roadmap) —
+  *the path*. Breadth of the AI-engineering career: what to learn, in what order,
+  what to read, what to use.
+- [**`harness-engineer-roadmap`**](https://github.com/bettyguo/harness-engineer-roadmap) —
+  *the harness*. Building and operating agent harnesses, coding agents, IDE integrations.
+- [**`llm-interview-prep`**](https://github.com/bettyguo/llm-interview-prep) —
+  *the test*. Interview and system-design prep for LLM/AI roles.
+
+This repo is where you go to **build the thing**.
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md). Every new entry requires:
+
+1. The URL.
+2. One line of **evidence** that the guide is genuinely from-scratch (not a
+   library wrapper).
+3. A verification date — the guide was confirmed live and current within
+   the last 24 months (or the technique is timeless).
+
+Spotted a guide that's mislabeled as "from scratch" but actually a framework
+tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scratch.md).
+
+## Maintenance
+
+- Scheduled weekly link-check via CI.
+- Quarterly audit of the verification log.
+- Currently: **{{ target_count }} build targets** · **{{ guide_count }} guides** ·
+  **{{ original_count }} originals** · **{{ gap_count }} open gaps**.
+
+## License
+
+Content: [CC-BY-4.0](LICENSE) · Code: [MIT](LICENSE).
+
+## Curator
+
+[**Betty Guo (Dongxin Guo / 郭东欣)**](https://github.com/bettyguo) — final-year
+PhD candidate in Computer Science, [University of Hong Kong](https://www.cs.hku.hk/),
+advised by [Prof. Siu-Ming Yiu](https://www.cs.hku.hk/people/academic-staff/smyiu).
+ORCID: [0009-0000-2388-1072](https://orcid.org/0009-0000-2388-1072).
+
+## Star history
+
+<a href="https://star-history.com/#bettyguo/build-your-own-ai&Date">
+  <img src="https://api.star-history.com/svg?repos=bettyguo/build-your-own-ai&type=Date" alt="Star history" width="600">
+</a>

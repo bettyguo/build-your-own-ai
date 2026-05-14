@@ -1,0 +1,57 @@
+# Category: Inference — making a trained model useful.
+
+- id: sampling
+  category: inference
+  order: 1
+  title: "Sampling (greedy / temp / top-k / top-p)"
+  what_you_build: "Decoding-strategy functions: greedy, temperature, top-k, nucleus (top-p) — and a side-by-side comparison on the same prompt."
+  teaches: ["argmax vs sampling", "temperature scaling", "nucleus sampling"]
+  understanding: "Why the same model can sound creative or robotic depending entirely on three lines of decoding code."
+  difficulty: 1
+  guides: []
+  gap: true
+
+- id: kv-cache
+  category: inference
+  order: 2
+  title: "KV cache"
+  what_you_build: "A key/value cache that turns O(n²) decoding into O(n) — by far the biggest single inference optimization."
+  teaches: ["incremental decoding", "cache layout", "memory vs time trade-off"]
+  understanding: "Why the second token is faster than the first, and why long contexts blow up memory."
+  difficulty: 2
+  guides: []
+  gap: true
+  original_planned: true
+
+- id: inference-engine
+  category: inference
+  order: 3
+  title: "Minimal inference engine"
+  what_you_build: "A `generate()` loop with batching, padding, stop tokens, and the KV cache — what llama.cpp / vLLM do at their core."
+  teaches: ["batched generation", "padding masks", "stop conditions"]
+  understanding: "What makes an inference engine fast and where the production complexity actually lives."
+  difficulty: 3
+  guides: []
+  gap: true
+
+- id: speculative-decoding
+  category: inference
+  order: 4
+  title: "Speculative decoding"
+  what_you_build: "A draft + verify decoder: a small fast model proposes tokens, the target model checks them in parallel."
+  teaches: ["draft models", "rejection sampling", "acceptance rate"]
+  understanding: "How modern inference stacks get 2–3× throughput without changing the target model."
+  difficulty: 3
+  guides: []
+  gap: true
+
+- id: quantization
+  category: inference
+  order: 5
+  title: "Quantization (INT8 / INT4)"
+  what_you_build: "Post-training quantization of a small LM to INT8 and INT4 — with the accuracy/throughput trade-off measured."
+  teaches: ["weight-only quantization", "per-channel scales", "outliers and clipping"]
+  understanding: "Why 4-bit inference is the default for local deployment, and what it actually costs."
+  difficulty: 3
+  guides: []
+  gap: true
