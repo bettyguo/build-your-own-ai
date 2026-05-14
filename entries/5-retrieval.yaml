@@ -8,8 +8,16 @@
   teaches: ["term frequency", "inverse document frequency", "length normalization"]
   understanding: "Why the boring lexical baseline is hard to beat — and why pure vector search alone is rarely enough."
   difficulty: 1
-  guides: []
-  gap: true
+  guides:
+    - title: "Quick Introduction to Okapi BM25"
+      url: "https://ethen8181.github.io/machine-learning/search/bm25_intro.html"
+      author: "Ethen Liu"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Builds a custom `BM25` class with `fit` and `score` methods — term frequency, document frequency, IDF, and length normalization all written by hand, no `rank_bm25` import."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: vector-search
   category: retrieval
@@ -19,8 +27,25 @@
   teaches: ["L2 / cosine", "approximate vs exact NN", "HNSW graph construction"]
   understanding: "What every vector DB is actually doing in its hot path, and where the speed comes from."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "HNSW (tutorial implementation)"
+      url: "https://github.com/brtholomy/hnsw"
+      author: "brtholomy"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Readable Python implementation that mirrors the original paper's pseudocode — `Insert` and `SearchLayer` are written by hand, performance is sacrificed for clarity. Not using `hnswlib` / `faiss`."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Hierarchical Navigable Small Worlds (HNSW)"
+      url: "https://www.pinecone.io/learn/series/faiss/hnsw/"
+      author: "Pinecone Learn"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Walks the algorithm from skip-lists → navigable small-world → hierarchical — the conceptual companion to a from-scratch implementation. (Pair with brtholomy/hnsw for code.)"
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: hybrid-search
   category: retrieval
@@ -52,5 +77,13 @@
   teaches: ["chunking strategies", "context stuffing", "answer grounding"]
   understanding: "What RAG frameworks actually do, why most of the value is in the chunking + retrieval + prompt, and where they hide complexity."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Code a simple RAG from scratch"
+      url: "https://huggingface.co/blog/ngxson/make-your-own-rag"
+      author: "Xuan-Son Nguyen (ngxson)"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Builds the vector DB as a plain Python list, writes `cosine_similarity` from first principles, no LangChain / LlamaIndex / Chroma — just `ollama` for the local model calls."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

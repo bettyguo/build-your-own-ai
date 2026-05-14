@@ -8,8 +8,25 @@
   teaches: ["the LLM control flow", "termination conditions", "the tool-call cycle"]
   understanding: "Why 'agent' is a loop, not a framework — and how a few hundred lines reproduces the spine of Claude Code / Gemini CLI / Cursor agent mode."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "The Agent Execution Loop: Building an Agent From Scratch"
+      url: "https://victordibia.com/blog/agent-execution-loop/"
+      author: "Victor Dibia"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Builds a custom `Agent` class around `AsyncOpenAI` — the loop, tool dispatch, and termination conditions are all written explicitly. Author contrasts the same pattern with LangChain/CrewAI/AutoGen *after* building it without them."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Building effective agents"
+      url: "https://www.anthropic.com/research/building-effective-agents"
+      author: "Anthropic"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Anthropic's stance is explicit: 'start by using LLM APIs directly: many patterns can be implemented in a few lines of code.' Companion cookbook code shows agent patterns (chained calls, routing, parallelization, orchestrator-worker) without frameworks."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: tool-layer
   category: agents
@@ -54,5 +71,22 @@
   teaches: ["filesystem tools", "shell sandboxing", "diff-based edits"]
   understanding: "What today's coding agents actually do under the hood — and why prompt + tools + loop is most of the magic."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "How to build a coding agent (free workshop)"
+      url: "https://ghuntley.com/agent/"
+      author: "Geoffrey Huntley"
+      kind: written
+      language: "Mixed"
+      cost: free
+      from_scratch_evidence: "'~300 lines of code running in a loop with LLM tokens' — workshop builds five tool primitives (read, list, bash, search, edit) from scratch and chains them in a hand-written agent loop."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Build an AI Coding Agent in Python"
+      url: "https://www.freecodecamp.org/news/build-an-ai-coding-agent-in-python/"
+      author: "Lane Wagner (boot.dev / freeCodeCamp)"
+      kind: course
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Course walks through implementing the agentic loop directly against the Gemini API — no Claude Code SDK, no LangChain. Tool execution and the loop are written by the learner step by step."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

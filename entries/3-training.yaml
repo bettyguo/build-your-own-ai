@@ -8,8 +8,25 @@
   teaches: ["mini-batching", "loss/eval logging", "checkpointing"]
   understanding: "Why training infrastructure is most of the work even when the model code is a few hundred lines."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "A full training loop — Hugging Face LLM Course (Ch 3.4)"
+      url: "https://huggingface.co/learn/llm-course/chapter3/4"
+      author: "Hugging Face"
+      kind: course
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Section explicitly drops the `Trainer` API and writes the loop by hand: dataloader iteration, manual `optimizer.zero_grad / loss.backward / optimizer.step`, gradient accumulation, mixed precision."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "nanoGPT — `train.py`"
+      url: "https://github.com/karpathy/nanoGPT/blob/master/train.py"
+      author: "Andrej Karpathy"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "~300-line training loop: data iteration, AMP, gradient accumulation, cosine LR schedule, DDP — all written explicitly, no `Trainer` or `accelerate.Trainer` wrapper."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: optimizer-from-scratch
   category: training
@@ -19,8 +36,16 @@
   teaches: ["momentum", "adaptive learning rates", "weight decay vs L2"]
   understanding: "Why AdamW dominates LLM pretraining and what every term in the update rule is doing."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Adam Optimizer (annotated PyTorch implementation)"
+      url: "https://nn.labml.ai/optimizers/adam.html"
+      author: "labml.ai"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Subclasses `torch.optim.Optimizer` and writes Adam's update rule by hand — first-moment, second-moment, bias correction, parameter update — all annotated against the paper's equations."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: lr-schedule
   category: training
@@ -52,8 +77,16 @@
   teaches: ["instruction following", "loss masking on prompts", "learning rate for SFT"]
   understanding: "Why the same base model can become a chatbot, a coding assistant, or a math tutor depending purely on the SFT data."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Build a Large Language Model (From Scratch) — Chapter 7: Instruction fine-tuning"
+      url: "https://github.com/rasbt/LLMs-from-scratch/tree/main/ch07"
+      author: "Sebastian Raschka"
+      kind: book
+      language: "Python"
+      cost: paid
+      from_scratch_evidence: "Chapter 7 fine-tunes the GPT model built in earlier chapters on Alpaca-style instructions — pure PyTorch SFT loop, custom loss masking on prompts, no `transformers.Trainer` or TRL `SFTTrainer`."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: reward-model
   category: training
@@ -75,8 +108,16 @@
   teaches: ["DPO loss", "implicit reward", "reference model KL"]
   understanding: "Why DPO replaced RLHF for many teams, and the trade-offs it makes."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "DPO from scratch (LLMs-from-scratch Ch 7.4)"
+      url: "https://github.com/rasbt/LLMs-from-scratch/blob/main/ch07/04_preference-tuning-with-dpo/dpo-from-scratch.ipynb"
+      author: "Sebastian Raschka"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Notebook companion to the LLMs-from-scratch book; implements the DPO loss (log-ratio of policy vs reference) directly in PyTorch — no TRL `DPOTrainer`."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: ppo-grpo
   category: training

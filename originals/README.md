@@ -13,11 +13,17 @@ reader never mistakes it for a curated link.
 
 | Target | Why it exists |
 |---|---|
-| [`kv-cache.md`](kv-cache.md) | Every inference talk references it; almost no tutorial isolates it cleanly. |
 | [`reward-model.md`](reward-model.md) | RLHF tutorials skip straight to PPO; the reward model is the foundational object. |
 | [`agent-memory.md`](agent-memory.md) | Most current tutorials lean on a framework; the from-scratch version is genuinely missing. |
 | [`multi-agent.md`](multi-agent.md) | The "without CrewAI / AutoGen" build is rare and high-value. |
 | [`calibration-hallucination.md`](calibration-hallucination.md) | Eval guides exist; this specific lens almost none. |
+
+Note: KV cache was originally planned as an `originals/` candidate. During
+Phase 3 verification, Sebastian Raschka's "Understanding and Coding the KV
+Cache in LLMs from Scratch" and Hugging Face's "KV Cache from scratch in
+nanoVLM" were both found to cover it cleanly — so the target ships with
+verified guides rather than an original. This is the verification process
+working as intended.
 
 ## Style
 

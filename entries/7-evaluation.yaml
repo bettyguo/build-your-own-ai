@@ -19,8 +19,25 @@
   teaches: ["pairwise comparison", "pointwise scoring", "judge biases (position, length, self-preference)"]
   understanding: "When LLM-as-judge is reliable, when it's a circular argument, and how to measure that line."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Using LLM-as-a-Judge For Evaluation: A Complete Guide"
+      url: "https://hamel.dev/blog/posts/llm-judge/"
+      author: "Hamel Husain"
+      kind: written
+      language: "Mixed"
+      cost: free
+      from_scratch_evidence: "Seven-step process: build the judge prompt, validate against a domain expert's labels, iterate until agreement > 90% — no off-the-shelf judge library. Industry-canonical reference for evals."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Using LLM-as-a-judge for an automated and versatile evaluation"
+      url: "https://huggingface.co/learn/cookbook/llm_judge"
+      author: "Aymeric Roucher (Hugging Face)"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Notebook builds a judge with raw `InferenceClient` calls, measures Pearson correlation against human raters, iterates the prompt — no LangChain Evaluators, no `ragas`."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: calibration-hallucination
   category: evaluation

@@ -13,9 +13,9 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/content-CC--BY--4.0-blue.svg" alt="content license"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-green.svg" alt="code license"></a>
-  <img src="https://img.shields.io/badge/last%20updated-n/a-brightgreen.svg" alt="last updated">
+  <img src="https://img.shields.io/badge/last%20updated-2026-05-14-brightgreen.svg" alt="last updated">
   <img src="https://img.shields.io/badge/targets-40-informational.svg" alt="target count">
-  <img src="https://img.shields.io/badge/originals-5-purple.svg" alt="originals">
+  <img src="https://img.shields.io/badge/originals-4-purple.svg" alt="originals">
 </p>
 
 ---
@@ -64,7 +64,8 @@ _The machinery before the model._
 
 **What you'll understand after:** Why models see tokens, not characters or words — and why that single decision shapes every downstream cost and behavior.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _minbpe_](https://github.com/karpathy/minbpe) — Andrej Karpathy · code · free
+- [**Python**: _Let's build the GPT Tokenizer_](https://www.youtube.com/watch?v=zduSFxRajkE) — Andrej Karpathy · video · free
 
 #### Embedding layer <sub>★☆☆ · easy</sub>
 
@@ -80,7 +81,7 @@ _The machinery before the model._
 
 **What you'll understand after:** Why neural networks are 'just' big differentiable functions, and what every deep-learning framework is doing under the hood.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _micrograd_](https://github.com/karpathy/micrograd) — Andrej Karpathy · code · free
 
 #### Backprop by hand on an MLP <sub>★★☆ · afternoon</sub>
 
@@ -88,7 +89,7 @@ _The machinery before the model._
 
 **What you'll understand after:** The gradient flow through every layer — so 'why is loss not going down' stops being a black box.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Neural Networks: Zero to Hero (lectures 1–4)_](https://github.com/karpathy/nn-zero-to-hero) — Andrej Karpathy · course · free
 
 ### The Model
 _Attention to a full small LM._
@@ -99,7 +100,8 @@ _Attention to a full small LM._
 
 **What you'll understand after:** Exactly how attention computes a weighted average of values — and why 'attention is all you need' is more than a slogan.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Understanding and Coding Self-Attention, Multi-Head Attention, Causal-Attention, and Cross-Attention in LLMs_](https://magazine.sebastianraschka.com/p/understanding-and-coding-self-attention) — Sebastian Raschka · written · free
+- [**Python**: _The Annotated Transformer_](https://nlp.seas.harvard.edu/2018/04/03/attention.html) — Alexander 'Sasha' Rush (Harvard NLP) · written · free
 
 #### Positional encodings <sub>★★☆ · afternoon</sub>
 
@@ -107,7 +109,8 @@ _Attention to a full small LM._
 
 **What you'll understand after:** Why attention is permutation-equivariant by default and how each scheme breaks that symmetry differently.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Mixed**: _Rotary Embeddings: A Relative Revolution_](https://blog.eleuther.ai/rotary-embeddings/) — EleutherAI (Biderman, Black, Foster, Gao, Hallahan, He, Wang, Wang) · written · free
+- [**Python**: _Rotary Positional Embeddings (RoPE)_](https://nn.labml.ai/transformers/rope/index.html) — labml.ai · written · free
 
 #### Transformer block <sub>★★☆ · afternoon</sub>
 
@@ -115,7 +118,7 @@ _Attention to a full small LM._
 
 **What you'll understand after:** Why the same block stacked 12, 24, 96 times scales — and the role each sub-layer plays.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _nanoGPT — `model.py`_](https://github.com/karpathy/nanoGPT/blob/master/model.py) — Andrej Karpathy · code · free
 
 #### A small GPT <sub>★★☆ · afternoon</sub>
 
@@ -123,7 +126,10 @@ _Attention to a full small LM._
 
 **What you'll understand after:** How every modern frontier model is, at its core, a much bigger version of what you just trained.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Let's reproduce GPT-2 (124M) — build-nanogpt_](https://github.com/karpathy/build-nanogpt) — Andrej Karpathy · video · free
+- [**Python**: _nanoGPT_](https://github.com/karpathy/nanoGPT) — Andrej Karpathy · code · free
+- [**Python**: _nanochat_](https://github.com/karpathy/nanochat) — Andrej Karpathy · code · free
+- [**Python**: _Build a Large Language Model (From Scratch)_](https://github.com/rasbt/LLMs-from-scratch) — Sebastian Raschka · book · paid
 
 #### A small encoder LM (BERT-style) <sub>★★☆ · afternoon</sub>
 
@@ -131,7 +137,7 @@ _Attention to a full small LM._
 
 **What you'll understand after:** Why encoder models still win on classification and retrieval — and what they cannot do that decoders can.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Masked Language Model (MLM)_](https://nn.labml.ai/transformers/mlm/index.html) — labml.ai · written · free
 
 #### Mixture-of-Experts block <sub>★★★ · weekend</sub>
 
@@ -139,7 +145,7 @@ _Attention to a full small LM._
 
 **What you'll understand after:** How frontier models scale parameter count cheaply at inference, and why MoE training is notoriously fiddly.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _mixture-of-experts_](https://github.com/lucidrains/mixture-of-experts) — Phil Wang (lucidrains) · code · free
 
 #### State-space / Mamba-style block <sub>★★★ · weekend</sub>
 
@@ -147,7 +153,7 @@ _Attention to a full small LM._
 
 **What you'll understand after:** Why SSMs handle long sequences cheaply, and where they trade off against attention.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _mamba-minimal_](https://github.com/johnma2006/mamba-minimal) — John Ma · code · free
 
 ### Training
 _How models learn._
@@ -158,7 +164,8 @@ _How models learn._
 
 **What you'll understand after:** Why training infrastructure is most of the work even when the model code is a few hundred lines.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _A full training loop — Hugging Face LLM Course (Ch 3.4)_](https://huggingface.co/learn/llm-course/chapter3/4) — Hugging Face · course · free
+- [**Python**: _nanoGPT — `train.py`_](https://github.com/karpathy/nanoGPT/blob/master/train.py) — Andrej Karpathy · code · free
 
 #### Optimizer (SGD → Adam → AdamW) <sub>★★☆ · afternoon</sub>
 
@@ -166,7 +173,7 @@ _How models learn._
 
 **What you'll understand after:** Why AdamW dominates LLM pretraining and what every term in the update rule is doing.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Adam Optimizer (annotated PyTorch implementation)_](https://nn.labml.ai/optimizers/adam.html) — labml.ai · written · free
 
 #### Learning-rate schedule <sub>★☆☆ · easy</sub>
 
@@ -190,7 +197,7 @@ _How models learn._
 
 **What you'll understand after:** Why the same base model can become a chatbot, a coding assistant, or a math tutor depending purely on the SFT data.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Build a Large Language Model (From Scratch) — Chapter 7: Instruction fine-tuning_](https://github.com/rasbt/LLMs-from-scratch/tree/main/ch07) — Sebastian Raschka · book · paid
 
 #### Reward model <sub>★★★ · weekend</sub>
 
@@ -206,7 +213,7 @@ _How models learn._
 
 **What you'll understand after:** Why DPO replaced RLHF for many teams, and the trade-offs it makes.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _DPO from scratch (LLMs-from-scratch Ch 7.4)_](https://github.com/rasbt/LLMs-from-scratch/blob/main/ch07/04_preference-tuning-with-dpo/dpo-from-scratch.ipynb) — Sebastian Raschka · code · free
 
 #### PPO / GRPO-style RL loop <sub>★★★ · weekend</sub>
 
@@ -233,7 +240,8 @@ _Making a trained model useful._
 
 **What you'll understand after:** Why the second token is faster than the first, and why long contexts blow up memory.
 
-> _Gap target — original starter guide planned in [`originals/kv-cache.md`](originals/kv-cache.md)._
+- [**Python**: _Understanding and Coding the KV Cache in LLMs from Scratch_](https://magazine.sebastianraschka.com/p/coding-the-kv-cache-in-llms) — Sebastian Raschka · written · free
+- [**Python**: _KV Cache from scratch in nanoVLM_](https://huggingface.co/blog/kv-cache) — Aritra Roy Gosthipaty, Kashif Rasul, Pedro Cuenca et al. (Hugging Face) · written · free
 
 #### Minimal inference engine <sub>★★★ · weekend</sub>
 
@@ -241,7 +249,7 @@ _Making a trained model useful._
 
 **What you'll understand after:** What makes an inference engine fast and where the production complexity actually lives.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**C**: _llama2.c_](https://github.com/karpathy/llama2.c) — Andrej Karpathy · code · free
 
 #### Speculative decoding <sub>★★★ · weekend</sub>
 
@@ -249,7 +257,7 @@ _Making a trained model useful._
 
 **What you'll understand after:** How modern inference stacks get 2–3× throughput without changing the target model.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Speculative-Decoding (Leviathan et al. 2023, PyTorch)_](https://github.com/romsto/Speculative-Decoding) — Romain Storaï · code · free
 
 #### Quantization (INT8 / INT4) <sub>★★★ · weekend</sub>
 
@@ -268,7 +276,7 @@ _External memory for LMs._
 
 **What you'll understand after:** Why the boring lexical baseline is hard to beat — and why pure vector search alone is rarely enough.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Quick Introduction to Okapi BM25_](https://ethen8181.github.io/machine-learning/search/bm25_intro.html) — Ethen Liu · written · free
 
 #### Vector search (brute force → HNSW) <sub>★★☆ · afternoon</sub>
 
@@ -276,7 +284,8 @@ _External memory for LMs._
 
 **What you'll understand after:** What every vector DB is actually doing in its hot path, and where the speed comes from.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _HNSW (tutorial implementation)_](https://github.com/brtholomy/hnsw) — brtholomy · code · free
+- [**Python**: _Hierarchical Navigable Small Worlds (HNSW)_](https://www.pinecone.io/learn/series/faiss/hnsw/) — Pinecone Learn · written · free
 
 #### Hybrid search (BM25 + vector) <sub>★★☆ · afternoon</sub>
 
@@ -300,7 +309,7 @@ _External memory for LMs._
 
 **What you'll understand after:** What RAG frameworks actually do, why most of the value is in the chunking + retrieval + prompt, and where they hide complexity.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Code a simple RAG from scratch_](https://huggingface.co/blog/ngxson/make-your-own-rag) — Xuan-Son Nguyen (ngxson) · written · free
 
 ### Agents
 _LMs that take actions._
@@ -311,7 +320,8 @@ _LMs that take actions._
 
 **What you'll understand after:** Why 'agent' is a loop, not a framework — and how a few hundred lines reproduces the spine of Claude Code / Gemini CLI / Cursor agent mode.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _The Agent Execution Loop: Building an Agent From Scratch_](https://victordibia.com/blog/agent-execution-loop/) — Victor Dibia · written · free
+- [**Python**: _Building effective agents_](https://www.anthropic.com/research/building-effective-agents) — Anthropic · written · free
 
 #### Tool / function-calling layer <sub>★★☆ · afternoon</sub>
 
@@ -343,7 +353,8 @@ _LMs that take actions._
 
 **What you'll understand after:** What today's coding agents actually do under the hood — and why prompt + tools + loop is most of the magic.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Mixed**: _How to build a coding agent (free workshop)_](https://ghuntley.com/agent/) — Geoffrey Huntley · written · free
+- [**Python**: _Build an AI Coding Agent in Python_](https://www.freecodecamp.org/news/build-an-ai-coding-agent-in-python/) — Lane Wagner (boot.dev / freeCodeCamp) · course · free
 
 ### Evaluation
 _Knowing if it actually works._
@@ -362,7 +373,8 @@ _Knowing if it actually works._
 
 **What you'll understand after:** When LLM-as-judge is reliable, when it's a circular argument, and how to measure that line.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Mixed**: _Using LLM-as-a-Judge For Evaluation: A Complete Guide_](https://hamel.dev/blog/posts/llm-judge/) — Hamel Husain · written · free
+- [**Python**: _Using LLM-as-a-judge for an automated and versatile evaluation_](https://huggingface.co/learn/cookbook/llm_judge) — Aymeric Roucher (Hugging Face) · written · free
 
 #### Calibration / hallucination check <sub>★★★ · weekend</sub>
 
@@ -381,7 +393,8 @@ _Vision, audio, multimodal._
 
 **What you'll understand after:** Why a model trained to predict noise can generate images, and how DDPM/DDIM/etc. relate.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _denoising-diffusion-pytorch_](https://github.com/lucidrains/denoising-diffusion-pytorch) — Phil Wang (lucidrains) · code · free
+- [**Python**: _Hugging Face Diffusion Models Course (Unit 1: Introduction)_](https://huggingface.co/learn/diffusion-course/unit0/1) — Jonathan Whitaker, Lewis Tunstall (Hugging Face) · course · free
 
 #### CLIP-style contrastive model <sub>★★★ · weekend</sub>
 
@@ -389,7 +402,7 @@ _Vision, audio, multimodal._
 
 **What you'll understand after:** How a single embedding space can host both modalities, and why CLIP-style models underpin most modern multimodal systems.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Simple Implementation of OpenAI CLIP model_](https://github.com/moein-shariatnia/OpenAI-CLIP) — Moein Shariatnia · code · free
 
 #### Speech recognition (CTC) <sub>★★★ · weekend</sub>
 
@@ -397,7 +410,7 @@ _Vision, audio, multimodal._
 
 **What you'll understand after:** How variable-length audio aligns to text without forced alignment, and why CTC is still the workhorse loss for ASR.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Building an End-to-End Speech Recognition Model in PyTorch_](https://www.assemblyai.com/blog/end-to-end-speech-recognition-pytorch) — Michael Nguyen (AssemblyAI) · written · free
 
 
 ## Originals
@@ -448,8 +461,8 @@ tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scrat
 
 - Scheduled weekly link-check via CI.
 - Quarterly audit of the verification log.
-- Currently: **40 build targets** · **0 guides** ·
-  **5 originals** · **40 open gaps**.
+- Currently: **40 build targets** · **39 guides** ·
+  **4 originals** · **14 open gaps**.
 
 ## License
 

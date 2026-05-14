@@ -19,9 +19,25 @@
   teaches: ["incremental decoding", "cache layout", "memory vs time trade-off"]
   understanding: "Why the second token is faster than the first, and why long contexts blow up memory."
   difficulty: 2
-  guides: []
-  gap: true
-  original_planned: true
+  guides:
+    - title: "Understanding and Coding the KV Cache in LLMs from Scratch"
+      url: "https://magazine.sebastianraschka.com/p/coding-the-kv-cache-in-llms"
+      author: "Sebastian Raschka"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Side-by-side comparison of two self-contained scripts (`gpt_ch04.py` without cache, `gpt_with_kv_cache.py` with) — the cache is written explicitly in PyTorch, ~5× speedup measured."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "KV Cache from scratch in nanoVLM"
+      url: "https://huggingface.co/blog/kv-cache"
+      author: "Aritra Roy Gosthipaty, Kashif Rasul, Pedro Cuenca et al. (Hugging Face)"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Walks through implementing per-layer KV caching in the nanoVLM attention block — prefill/decode separation written by hand, achieves 38% speedup."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: inference-engine
   category: inference
@@ -31,8 +47,16 @@
   teaches: ["batched generation", "padding masks", "stop conditions"]
   understanding: "What makes an inference engine fast and where the production complexity actually lives."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "llama2.c"
+      url: "https://github.com/karpathy/llama2.c"
+      author: "Andrej Karpathy"
+      kind: code
+      language: "C"
+      cost: free
+      from_scratch_evidence: "700-line `run.c` implements LLaMA-2 inference end to end in pure C: tokenizer, transformer forward, KV cache, sampling — no external ML library."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: speculative-decoding
   category: inference
@@ -42,8 +66,16 @@
   teaches: ["draft models", "rejection sampling", "acceptance rate"]
   understanding: "How modern inference stacks get 2–3× throughput without changing the target model."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "Speculative-Decoding (Leviathan et al. 2023, PyTorch)"
+      url: "https://github.com/romsto/Speculative-Decoding"
+      author: "Romain Storaï"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "PyTorch implementation of the original Leviathan et al. paper — both classic autoregressive and speculative decoding are written from scratch, side by side, so the speedup is measurable."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: quantization
   category: inference

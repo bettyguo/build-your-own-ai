@@ -8,8 +8,25 @@
   teaches: ["queries / keys / values", "scaled dot product", "multi-head splitting"]
   understanding: "Exactly how attention computes a weighted average of values — and why 'attention is all you need' is more than a slogan."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Understanding and Coding Self-Attention, Multi-Head Attention, Causal-Attention, and Cross-Attention in LLMs"
+      url: "https://magazine.sebastianraschka.com/p/understanding-and-coding-self-attention"
+      author: "Sebastian Raschka"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Builds a `SelfAttention` class with manual `queries @ keys.T`, hand-written softmax, and a multi-head extension — explicitly contrasts with `nn.MultiheadAttention`."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "The Annotated Transformer"
+      url: "https://nlp.seas.harvard.edu/2018/04/03/attention.html"
+      author: "Alexander 'Sasha' Rush (Harvard NLP)"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Line-by-line PyTorch reimplementation of the 'Attention Is All You Need' paper — every sublayer (attention, position-wise FFN, positional encoding) is hand-written."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: positional-encodings
   category: model
@@ -19,8 +36,25 @@
   teaches: ["positional information without recurrence", "RoPE rotation in complex space", "extrapolation behavior"]
   understanding: "Why attention is permutation-equivariant by default and how each scheme breaks that symmetry differently."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Rotary Embeddings: A Relative Revolution"
+      url: "https://blog.eleuther.ai/rotary-embeddings/"
+      author: "EleutherAI (Biderman, Black, Foster, Gao, Hallahan, He, Wang, Wang)"
+      kind: written
+      language: "Mixed"
+      cost: free
+      from_scratch_evidence: "Mathematical derivation from first principles + PyTorch and JAX implementations pulled from EleutherAI codebases — no library dependency for the rotation itself."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Rotary Positional Embeddings (RoPE)"
+      url: "https://nn.labml.ai/transformers/rope/index.html"
+      author: "labml.ai"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Annotated `RotaryPositionalEmbeddings` class implemented from the paper, with step-by-step mathematical commentary alongside the PyTorch code."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: transformer-block
   category: model
@@ -30,8 +64,16 @@
   teaches: ["pre-norm vs post-norm", "residual streams", "MLP expansion ratio"]
   understanding: "Why the same block stacked 12, 24, 96 times scales — and the role each sub-layer plays."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "nanoGPT — `model.py`"
+      url: "https://github.com/karpathy/nanoGPT/blob/master/model.py"
+      author: "Andrej Karpathy"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "`model.py` (~300 lines) defines `CausalSelfAttention`, `Block`, and `GPT` in PyTorch primitives — no `nn.Transformer`, no `transformers` library."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: small-gpt
   category: model
@@ -41,8 +83,43 @@
   teaches: ["autoregressive language modeling", "training/eval split", "loss curves at small scale"]
   understanding: "How every modern frontier model is, at its core, a much bigger version of what you just trained."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Let's reproduce GPT-2 (124M) — build-nanogpt"
+      url: "https://github.com/karpathy/build-nanogpt"
+      author: "Andrej Karpathy"
+      kind: video
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Companion to a 4-hour video lecture; git commits are kept step by step so the reader can walk through nanoGPT being built from an empty file."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "nanoGPT"
+      url: "https://github.com/karpathy/nanoGPT"
+      author: "Andrej Karpathy"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "~600 lines total (model + training loop), reproduces GPT-2 (124M) on OpenWebText. No `transformers` library for the model code."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "nanochat"
+      url: "https://github.com/karpathy/nanochat"
+      author: "Andrej Karpathy"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Successor to nanoGPT — extends pretraining to the full ChatGPT-like pipeline (tokenization, pretraining, finetuning, inference, chat UI) from scratch in PyTorch."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Build a Large Language Model (From Scratch)"
+      url: "https://github.com/rasbt/LLMs-from-scratch"
+      author: "Sebastian Raschka"
+      kind: book
+      language: "Python"
+      cost: paid
+      from_scratch_evidence: "Companion code for the Manning book — the book's stated principle is 'implements the code from scratch without using any external LLM libraries' (uses PyTorch primitives only). Repo is free; the book itself is paid."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: small-encoder-lm
   category: model
@@ -52,8 +129,16 @@
   teaches: ["MLM objective", "bidirectional attention", "the encoder/decoder split"]
   understanding: "Why encoder models still win on classification and retrieval — and what they cannot do that decoders can."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Masked Language Model (MLM)"
+      url: "https://nn.labml.ai/transformers/mlm/index.html"
+      author: "labml.ai"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Annotated PyTorch implementation of the MLM pretraining objective used for BERT — the masking procedure and training loop are written out, not imported."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: mixture-of-experts
   category: model
@@ -63,8 +148,16 @@
   teaches: ["sparse activation", "top-k routing", "load balancing"]
   understanding: "How frontier models scale parameter count cheaply at inference, and why MoE training is notoriously fiddly."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "mixture-of-experts"
+      url: "https://github.com/lucidrains/mixture-of-experts"
+      author: "Phil Wang (lucidrains)"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Sparsely-gated MoE layer implemented from the Shazeer et al. paper in PyTorch — custom gating, top-k routing, and load-balancing loss, no `transformers` library dependency."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: ssm-mamba-block
   category: model
@@ -74,5 +167,13 @@
   teaches: ["state-space models", "selectivity", "linear-time long-context"]
   understanding: "Why SSMs handle long sequences cheaply, and where they trade off against attention."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "mamba-minimal"
+      url: "https://github.com/johnma2006/mamba-minimal"
+      author: "John Ma"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Single-file pure-PyTorch Mamba in ~200 lines. README explicitly states the official `mamba_ssm` CUDA kernel is *not* used — the SSM block is implemented in PyTorch primitives for readability."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

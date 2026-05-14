@@ -9,8 +9,25 @@
   teaches: ["subword tokenization", "vocab construction", "merges"]
   understanding: "Why models see tokens, not characters or words — and why that single decision shapes every downstream cost and behavior."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "minbpe"
+      url: "https://github.com/karpathy/minbpe"
+      author: "Andrej Karpathy"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Implements `BasicTokenizer`, `RegexTokenizer`, and `GPT4Tokenizer` from first principles — tiktoken is only imported in tests for cross-validation, never as the implementation."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Let's build the GPT Tokenizer"
+      url: "https://www.youtube.com/watch?v=zduSFxRajkE"
+      author: "Andrej Karpathy"
+      kind: video
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Companion lecture for `minbpe`; codes BPE merges step by step from an empty file in the video."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: embedding-layer
   category: foundations
@@ -31,8 +48,16 @@
   teaches: ["computational graphs", "reverse-mode autodiff", "the chain rule in code"]
   understanding: "Why neural networks are 'just' big differentiable functions, and what every deep-learning framework is doing under the hood."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "micrograd"
+      url: "https://github.com/karpathy/micrograd"
+      author: "Andrej Karpathy"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "~100 lines of autograd + ~50 lines of an `nn` module — implements reverse-mode autodiff over a DAG of scalar `Value`s, no PyTorch dependency for the engine itself."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: backprop-by-hand
   category: foundations
@@ -42,5 +67,13 @@
   teaches: ["chain rule", "gradient flow", "vanishing/exploding gradients"]
   understanding: "The gradient flow through every layer — so 'why is loss not going down' stops being a black box."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Neural Networks: Zero to Hero (lectures 1–4)"
+      url: "https://github.com/karpathy/nn-zero-to-hero"
+      author: "Andrej Karpathy"
+      kind: course
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Lecture 1 builds micrograd from an empty file; lectures 2–4 (makemore) implement an MLP and walk through manual backward passes — Lecture 4 is literally titled 'Becoming a Backprop Ninja' and computes every gradient by hand."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

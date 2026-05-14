@@ -8,8 +8,25 @@
   teaches: ["forward / reverse processes", "score / noise prediction", "the variance schedule"]
   understanding: "Why a model trained to predict noise can generate images, and how DDPM/DDIM/etc. relate."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "denoising-diffusion-pytorch"
+      url: "https://github.com/lucidrains/denoising-diffusion-pytorch"
+      author: "Phil Wang (lucidrains)"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Custom `Unet` + `GaussianDiffusion` classes implementing DDPM from the Ho et al. paper — no `diffusers` library dependency for the core forward/reverse process."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Hugging Face Diffusion Models Course (Unit 1: Introduction)"
+      url: "https://huggingface.co/learn/diffusion-course/unit0/1"
+      author: "Jonathan Whitaker, Lewis Tunstall (Hugging Face)"
+      kind: course
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Unit 1 syllabus explicitly states 'Introduction to 🤗 Diffusers and implementation from 0' — the from-scratch notebook predates the `diffusers`-based unit."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: clip
   category: beyond-text
@@ -19,8 +36,16 @@
   teaches: ["contrastive learning", "InfoNCE", "modality alignment"]
   understanding: "How a single embedding space can host both modalities, and why CLIP-style models underpin most modern multimodal systems."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "Simple Implementation of OpenAI CLIP model"
+      url: "https://github.com/moein-shariatnia/OpenAI-CLIP"
+      author: "Moein Shariatnia"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Separate `ImageEncoder` + `TextEncoder` + `ProjectionHead` modules in PyTorch, contrastive loss written explicitly with cross-entropy — uses `timm`/`transformers` only for the backbone vision/text encoders, the CLIP objective itself is from scratch."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: asr-ctc
   category: beyond-text
@@ -30,5 +55,13 @@
   teaches: ["audio feature extraction (mel-spectrogram)", "CTC alignment", "blank-token decoding"]
   understanding: "How variable-length audio aligns to text without forced alignment, and why CTC is still the workhorse loss for ASR."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "Building an End-to-End Speech Recognition Model in PyTorch"
+      url: "https://www.assemblyai.com/blog/end-to-end-speech-recognition-pytorch"
+      author: "Michael Nguyen (AssemblyAI)"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Builds a Deep-Speech-2-style architecture (residual CNNs + bidirectional GRUs) end to end in PyTorch, trained with the CTC loss — no pretrained Wav2Vec2 / Whisper checkpoint."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
