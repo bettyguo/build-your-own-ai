@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="assets/banner.png" alt="build-your-own-ai" width="720" onerror="this.style.display='none'">
-</p>
-
 <h1 align="center">build-your-own-ai</h1>
 
 <p align="center">
