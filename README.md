@@ -9,7 +9,6 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/content-CC--BY--4.0-blue.svg" alt="content license"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-green.svg" alt="code license"></a>
-  <img src="https://img.shields.io/badge/last%20updated-2026-05-14-brightgreen.svg" alt="last updated">
   <img src="https://img.shields.io/badge/targets-62-informational.svg" alt="target count">
   <img src="https://img.shields.io/badge/guides-80-informational.svg" alt="guide count">
   <img src="https://img.shields.io/badge/originals-9-purple.svg" alt="originals">
