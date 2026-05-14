@@ -1,0 +1,14 @@
+# Patterns (URL substrings) that linkcheck.py treats as "intentionally
+# referenced but not required to resolve." One pattern per line; blank
+# lines and lines beginning with # are ignored.
+#
+# Use sparingly — every line here is a curation debt. Each entry should
+# have a reason comment.
+
+# Sibling repos in the curator's four-repo learning constellation —
+# referenced as standalone peers in the README footer. Each is created on
+# its own timeline; their URLs may 404 transiently. Remove these
+# exceptions once those repos exist.
+github.com/bettyguo/ai-engineer-roadmap
+github.com/bettyguo/harness-engineer-roadmap
+github.com/bettyguo/llm-interview-prep

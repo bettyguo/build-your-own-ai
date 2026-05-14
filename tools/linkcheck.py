@@ -26,9 +26,25 @@ ENTRIES_DIR = ROOT / "entries"
 ORIGINALS_DIR = ROOT / "originals"
 README = ROOT / "README.md"
 REPORT = ROOT / "tools" / "linkcheck-report.md"
+IGNORE_FILE = ROOT / "tools" / ".linkcheckignore"
 
 URL_RE = re.compile(r"https?://[^\s)>\]\"']+")
 USER_AGENT = "build-your-own-ai-linkcheck/1.0 (+https://github.com/bettyguo/build-your-own-ai)"
+
+
+def load_ignore_patterns() -> list[str]:
+    if not IGNORE_FILE.exists():
+        return []
+    out: list[str] = []
+    for raw in IGNORE_FILE.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if line and not line.startswith("#"):
+            out.append(line)
+    return out
+
+
+def is_ignored(url: str, patterns: list[str]) -> bool:
+    return any(p in url for p in patterns)
 
 
 def urls_from_yaml(path: pathlib.Path) -> Iterable[tuple[str, str]]:
@@ -141,6 +157,13 @@ def main(mode: str, concurrency: int) -> None:
     timeout = 10.0 if mode == "quick" else 60.0
     retries = 1 if mode == "quick" else 3
     urls = collect_urls()
+    ignore_patterns = load_ignore_patterns()
+    if ignore_patterns:
+        before = len(urls)
+        urls = {u: w for u, w in urls.items() if not is_ignored(u, ignore_patterns)}
+        skipped = before - len(urls)
+        if skipped:
+            click.echo(f"skipping {skipped} URL(s) per tools/.linkcheckignore")
     if not urls:
         click.echo("no URLs found")
         REPORT.write_text("# Link-check report\n\n(no URLs)\n", encoding="utf-8")
