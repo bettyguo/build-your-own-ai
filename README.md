@@ -14,8 +14,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/content-CC--BY--4.0-blue.svg" alt="content license"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-green.svg" alt="code license"></a>
   <img src="https://img.shields.io/badge/last%20updated-2026-05-14-brightgreen.svg" alt="last updated">
-  <img src="https://img.shields.io/badge/targets-40-informational.svg" alt="target count">
-  <img src="https://img.shields.io/badge/originals-4-purple.svg" alt="originals">
+  <img src="https://img.shields.io/badge/targets-43-informational.svg" alt="target count">
+  <img src="https://img.shields.io/badge/originals-8-purple.svg" alt="originals">
 </p>
 
 ---
@@ -150,6 +150,14 @@ _Attention to a full small LM._
 - [**Python**: _st-moe-pytorch_](https://github.com/lucidrains/st-moe-pytorch) — Phil Wang (lucidrains) · code · free
 - [**Python**: _mixture-of-experts (Shazeer-style)_](https://github.com/lucidrains/mixture-of-experts) — Phil Wang (lucidrains) · code · free
 
+#### Long context (RoPE scaling, NTK, YaRN) <sub>★★★ · weekend</sub>
+
+**What you build:** Position Interpolation and NTK-aware / YaRN RoPE scaling — the techniques that extend a pretrained model from a 4k context to 32k+.
+
+**What you'll understand after:** Why the same model trained on 2k tokens can be coaxed into 100k context with a few lines of math — and where each scaling scheme breaks.
+
+- [**Python**: _How LLMs Scaled from 512 to 2M Context: A Technical Deep Dive_](https://amaarora.github.io/posts/2025-09-21-rope-context-extension.html) — Aman Arora · written · free
+
 #### State-space / Mamba-style block <sub>★★★ · weekend</sub>
 
 **What you build:** A minimal selective state-space model layer — a serious linear-time alternative to attention.
@@ -184,7 +192,7 @@ _How models learn._
 
 **What you'll understand after:** Why almost every modern run uses this exact shape and how badly things break without warmup.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+> _Gap target — original starter guide planned in [`originals/lr-schedule.md`](originals/lr-schedule.md)._
 
 #### Mixed precision + gradient accumulation <sub>★★☆ · afternoon</sub>
 
@@ -194,6 +202,15 @@ _How models learn._
 
 - [**Mixed**: _Mixed Precision Training from Scratch_](https://tspeterkim.github.io/posts/mixed-precision-from-scratch) — Taeksang Peter Kim · written · free
 
+#### Distributed training (DDP from scratch) <sub>★★☆ · afternoon</sub>
+
+**What you build:** A multi-GPU training run using PyTorch's Distributed Data Parallel — process groups, the gradient all-reduce, and the launch script — assembled from primitives.
+
+**What you'll understand after:** What `DistributedDataParallel` actually does in your backward pass, and why the all-reduce overlaps with backward computation.
+
+- [**Python**: _Getting Started with Distributed Data Parallel (official PyTorch tutorial)_](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html) — Shen Li (with edits by Joe Zhu and Chirag Pandya) · written · free
+- [**Python**: _Distributed data parallel training in PyTorch_](https://yangkky.github.io/2019/07/08/distributed-pytorch-tutorial.html) — Kevin Yang · written · free
+
 #### Supervised fine-tuning (SFT) <sub>★★☆ · afternoon</sub>
 
 **What you build:** Fine-tune a small base LM on an instruction dataset — the first half of every modern post-training pipeline.
@@ -201,6 +218,15 @@ _How models learn._
 **What you'll understand after:** Why the same base model can become a chatbot, a coding assistant, or a math tutor depending purely on the SFT data.
 
 - [**Python**: _Build a Large Language Model (From Scratch) — Chapter 7: Instruction fine-tuning_](https://github.com/rasbt/LLMs-from-scratch/tree/main/ch07) — Sebastian Raschka · book · paid
+
+#### LoRA / parameter-efficient fine-tuning <sub>★★☆ · afternoon</sub>
+
+**What you build:** A LoRA (low-rank adapter) layer from scratch — two low-rank matrices bolted onto a frozen pretrained linear layer — and a fine-tune that updates < 1% of parameters.
+
+**What you'll understand after:** Why a 4096×4096 weight matrix can be adapted with ~65k extra parameters, and what that buys (and costs) compared with full fine-tuning.
+
+- [**Python**: _Build a Large Language Model (From Scratch) — Appendix E: Parameter-efficient Finetuning with LoRA_](https://github.com/rasbt/LLMs-from-scratch/tree/main/appendix-E) — Sebastian Raschka · book · paid
+- [**Python**: _LoRA (Jake Tae)_](https://jaketae.github.io/study/lora/) — Jake Tae · written · free
 
 #### Reward model <sub>★★★ · weekend</sub>
 
@@ -305,7 +331,7 @@ _External memory for LMs._
 
 **What you'll understand after:** Why the best retrieval pipelines are always 'retrieve cheap, rerank expensive,' and what that actually buys you.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+> _Gap target — original starter guide planned in [`originals/reranker.md`](originals/reranker.md)._
 
 #### End-to-end RAG pipeline (no frameworks) <sub>★★☆ · afternoon</sub>
 
@@ -333,7 +359,7 @@ _LMs that take actions._
 
 **What you'll understand after:** What 'tool use' actually is at the wire level, why broken JSON is the most common bug, and how to keep the loop alive when a tool fails.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+> _Gap target — original starter guide planned in [`originals/tool-layer.md`](originals/tool-layer.md)._
 
 #### Agent memory (short + long term) <sub>★★☆ · afternoon</sub>
 
@@ -369,7 +395,7 @@ _Knowing if it actually works._
 
 **What you'll understand after:** Why eval harnesses are 80% data engineering and how to keep results comparable across model versions.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+> _Gap target — original starter guide planned in [`originals/eval-harness.md`](originals/eval-harness.md)._
 
 #### LLM-as-judge <sub>★★☆ · afternoon</sub>
 
@@ -465,8 +491,8 @@ tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scrat
 
 - Scheduled weekly link-check via CI.
 - Quarterly audit of the verification log.
-- Currently: **40 build targets** · **49 guides** ·
-  **4 originals** · **8 open gaps**.
+- Currently: **43 build targets** · **54 guides** ·
+  **8 originals** · **8 open gaps**.
 
 The full curation paper trail — every accepted and rejected guide with
 evidence — lives in [`PLANNING/03_verification_log.md`](PLANNING/03_verification_log.md).

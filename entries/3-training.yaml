@@ -57,6 +57,7 @@
   difficulty: 1
   guides: []
   gap: true
+  original_planned: true
 
 - id: mixed-precision
   category: training
@@ -77,9 +78,37 @@
       verified_on: 2026-05-14
       verifier: "bettyguo"
 
-- id: sft
+- id: distributed-training
   category: training
   order: 5
+  title: "Distributed training (DDP from scratch)"
+  what_you_build: "A multi-GPU training run using PyTorch's Distributed Data Parallel — process groups, the gradient all-reduce, and the launch script — assembled from primitives."
+  teaches: ["process groups", "gradient all-reduce", "rank / world-size / device pinning"]
+  understanding: "What `DistributedDataParallel` actually does in your backward pass, and why the all-reduce overlaps with backward computation."
+  difficulty: 2
+  guides:
+    - title: "Getting Started with Distributed Data Parallel (official PyTorch tutorial)"
+      url: "https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html"
+      author: "Shen Li (with edits by Joe Zhu and Chirag Pandya)"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Walks through `dist.init_process_group`, the DDP wrapper around a toy model, and the autograd hook that triggers the gradient all-reduce — no `accelerate.Trainer` wrapping."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "Distributed data parallel training in PyTorch"
+      url: "https://yangkky.github.io/2019/07/08/distributed-pytorch-tutorial.html"
+      author: "Kevin Yang"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Line-by-line walkthrough of converting a single-GPU MNIST script to multi-node DDP — process group init, gradient all-reduce, launch script across nodes — all explicit."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: sft
+  category: training
+  order: 6
   title: "Supervised fine-tuning (SFT)"
   what_you_build: "Fine-tune a small base LM on an instruction dataset — the first half of every modern post-training pipeline."
   teaches: ["instruction following", "loss masking on prompts", "learning rate for SFT"]
@@ -96,9 +125,37 @@
       verified_on: 2026-05-14
       verifier: "bettyguo"
 
+- id: lora
+  category: training
+  order: 7
+  title: "LoRA / parameter-efficient fine-tuning"
+  what_you_build: "A LoRA (low-rank adapter) layer from scratch — two low-rank matrices bolted onto a frozen pretrained linear layer — and a fine-tune that updates < 1% of parameters."
+  teaches: ["low-rank decomposition", "frozen vs trainable parameters", "alpha / rank scaling"]
+  understanding: "Why a 4096×4096 weight matrix can be adapted with ~65k extra parameters, and what that buys (and costs) compared with full fine-tuning."
+  difficulty: 2
+  guides:
+    - title: "Build a Large Language Model (From Scratch) — Appendix E: Parameter-efficient Finetuning with LoRA"
+      url: "https://github.com/rasbt/LLMs-from-scratch/tree/main/appendix-E"
+      author: "Sebastian Raschka"
+      kind: book
+      language: "Python"
+      cost: paid
+      from_scratch_evidence: "Companion code to the book's LoRA appendix — implements `LoRALayer` and `LinearWithLoRA` in pure PyTorch, swaps them into the chapter-7 fine-tuning loop, no `peft` library."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "LoRA (Jake Tae)"
+      url: "https://jaketae.github.io/study/lora/"
+      author: "Jake Tae"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Hand-written `LoRALinear` class implementing the two low-rank matrices + the scaling factor; trained on MNIST to show the parameter-count reduction in action. No `peft` import."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
 - id: reward-model
   category: training
-  order: 6
+  order: 8
   title: "Reward model"
   what_you_build: "Train a reward model on pairwise preference data — the scoring function that drives every RLHF-style pipeline."
   teaches: ["pairwise ranking loss", "preference data", "reward hacking"]
@@ -110,7 +167,7 @@
 
 - id: dpo
   category: training
-  order: 7
+  order: 9
   title: "DPO / preference tuning"
   what_you_build: "A Direct Preference Optimization loop that aligns a model from preferences alone — no separate reward model, no RL."
   teaches: ["DPO loss", "implicit reward", "reference model KL"]
@@ -129,7 +186,7 @@
 
 - id: ppo-grpo
   category: training
-  order: 8
+  order: 10
   title: "PPO / GRPO-style RL loop"
   what_you_build: "A miniature RL post-training loop — policy update with KL penalty and advantage estimation, on a tiny model."
   teaches: ["policy gradients", "KL regularization", "advantage estimation"]

@@ -177,9 +177,28 @@
       verified_on: 2026-05-14
       verifier: "bettyguo"
 
-- id: ssm-mamba-block
+- id: long-context-rope-scaling
   category: model
   order: 7
+  title: "Long context (RoPE scaling, NTK, YaRN)"
+  what_you_build: "Position Interpolation and NTK-aware / YaRN RoPE scaling — the techniques that extend a pretrained model from a 4k context to 32k+."
+  teaches: ["why naive extrapolation breaks", "linear position interpolation", "frequency-band scaling (NTK, YaRN)"]
+  understanding: "Why the same model trained on 2k tokens can be coaxed into 100k context with a few lines of math — and where each scaling scheme breaks."
+  difficulty: 3
+  guides:
+    - title: "How LLMs Scaled from 512 to 2M Context: A Technical Deep Dive"
+      url: "https://amaarora.github.io/posts/2025-09-21-rope-context-extension.html"
+      author: "Aman Arora"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Walks RoPE → Position Interpolation → NTK-Aware → Dynamic Scaling → NTK-By-Parts → YaRN with PyTorch implementations and visualizations for each — no library dependency for the scaling math."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+
+- id: ssm-mamba-block
+  category: model
+  order: 8
   title: "State-space / Mamba-style block"
   what_you_build: "A minimal selective state-space model layer — a serious linear-time alternative to attention."
   teaches: ["state-space models", "selectivity", "linear-time long-context"]

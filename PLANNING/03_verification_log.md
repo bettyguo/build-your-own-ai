@@ -14,13 +14,11 @@ primarily library configuration or product/framework wrapping.
 
 ## Summary
 
-- **40** build targets across 8 categories.
-- **49** verified guides accepted across **32** targets.
-- **8** targets ship as open `gap` (no good public from-scratch guide
-  found). Of these, **4** are planned `originals/` (reward-model,
-  agent-memory, multi-agent, calibration-hallucination); the remaining
-  **4** (lr-schedule, reranker, tool-layer, eval-harness) survived two
-  research sweeps and represent genuinely empty terrain.
+- **43** build targets across 8 categories (+3 added in Phase-7 expansion).
+- **54** verified guides accepted across **35** targets.
+- **8** targets ship as open `gap`. **All 8** are now filled by originals/
+  (reward-model, agent-memory, multi-agent, calibration-hallucination,
+  lr-schedule, reranker, tool-layer, eval-harness).
 - **8** guides were considered and rejected (reasons logged below).
 - **1** mid-research scope change: KV cache was originally tier-1 of the
   `originals/` plan; verification surfaced two excellent existing
@@ -73,28 +71,42 @@ yielded:
   (hybrid-search). Author explicitly chooses to implement RRF from scratch
   rather than use a vector DB's built-in fusion.
 
-### Genuinely empty after multiple sweeps (4 targets)
+### Phase-7 expansion (2026-05-14)
 
-The following targets survived two distinct research sweeps without
-yielding a from-scratch guide that meets the curation bar. These are
-the real terrain — the actually-missing from-scratch pedagogy in the
-AI stack as of 2026-05:
+After two unsuccessful gap-filling sweeps confirmed that four targets
+genuinely lacked good public from-scratch guides, those four became
+new originals:
 
-- `lr-schedule` — guides exist but every one is embedded inside a larger
-  tutorial; no standalone treatment with warmup + cosine + the
-  loss-curve comparison.
-- `reranker` — every candidate uses `sentence-transformers` heavily; the
-  cross-encoder objective is hidden behind framework abstractions.
-- `tool-layer` — every candidate uses Pydantic-AI / Instructor / framework
-  schema generators. The Amit Chaudhary article is the closest but
-  covers only the schema half, not dispatch / validation / error
-  recovery. Rejected to keep the bar.
-- `eval-harness` — every candidate is a tutorial *on using*
-  `lm-evaluation-harness`, not building one. By definition the inverse
-  of the from-scratch target.
+- ✓ `originals/lr-schedule.md` — warmup + cosine in code, with the
+  three-way loss-curve experiment that makes it click.
+- ✓ `originals/reranker.md` — cross-encoder + pointwise BCE loss + the
+  two-stage pipeline with the cost/quality trade-off measured.
+- ✓ `originals/tool-layer.md` — schema + dispatcher + lightweight
+  JSON-Schema validation, with the three error paths everyone hits.
+- ✓ `originals/eval-harness.md` — task / runner / scorer / reporter
+  with the four ways "comparable" breaks.
 
-These four become high-value `originals/` candidates for a Phase-7
-pass — or community PRs.
+Three new build targets were also added — genuine omissions from the
+original taxonomy:
+
+- ✓ `lora` (Training) — Raschka book Appendix E + Jake Tae LoRA post.
+  LoRA is the way almost everyone fine-tunes; not having it was a real
+  taxonomy hole.
+- ✓ `distributed-training` (Training) — PyTorch's official DDP tutorial
+  + Kevin Yang's walkthrough. Multi-GPU training was a glaring
+  taxonomy hole given that every nontrivial training run uses it.
+- ✓ `long-context-rope-scaling` (Model) — Aman Arora's "How LLMs Scaled
+  from 512 to 2M Context" deep dive. Position Interpolation → NTK →
+  YaRN with PyTorch code.
+
+One candidate rejected during Phase-7 verification:
+
+- ✗ Sebastian Raschka — "Practical Tips for Finetuning LLMs Using LoRA"
+  (https://magazine.sebastianraschka.com/p/practical-tips-for-finetuning-llms).
+  Author explicitly says "this article is focused on the broader ideas
+  and takeaways from working with LoRA—a top-down view," not the
+  from-scratch implementation. Raschka's book appendix-E (accepted
+  separately) covers the implementation.
 
 ---
 
@@ -278,20 +290,19 @@ pass — or community PRs.
 
 ---
 
-## Open gaps (8 targets)
+## Open gaps (8 targets — all now filled by originals/)
 
-Shipped as `gap: true` — readers see a marked open slot rather than a weak link.
+- `lr-schedule` (Training) — [`originals/lr-schedule.md`](../originals/lr-schedule.md)
+- `reward-model` (Training) — [`originals/reward-model.md`](../originals/reward-model.md)
+- `reranker` (Retrieval) — [`originals/reranker.md`](../originals/reranker.md)
+- `tool-layer` (Agents) — [`originals/tool-layer.md`](../originals/tool-layer.md)
+- `agent-memory` (Agents) — [`originals/agent-memory.md`](../originals/agent-memory.md)
+- `multi-agent` (Agents) — [`originals/multi-agent.md`](../originals/multi-agent.md)
+- `eval-harness` (Evaluation) — [`originals/eval-harness.md`](../originals/eval-harness.md)
+- `calibration-hallucination` (Evaluation) — [`originals/calibration-hallucination.md`](../originals/calibration-hallucination.md)
 
-- `lr-schedule` (Training)
-- `reward-model` (Training) — `originals/reward-model.md` planned
-- `reranker` (Retrieval)
-- `tool-layer` (Agents)
-- `agent-memory` (Agents) — `originals/agent-memory.md` planned
-- `multi-agent` (Agents) — `originals/multi-agent.md` planned
-- `eval-harness` (Evaluation)
-- `calibration-hallucination` (Evaluation) — `originals/calibration-hallucination.md` planned
-
-These are converted to "wanted build targets" issues — see `PLANNING/06_review.md`.
+All 8 open gaps are now filled by curator-authored originals. Every
+target in the index has either a verified external guide or an original.
 
 ---
 

@@ -38,6 +38,7 @@
   difficulty: 2
   guides: []
   gap: true
+  original_planned: true
 
 - id: agent-memory
   category: agents
