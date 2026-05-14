@@ -66,8 +66,16 @@
   teaches: ["dtype trade-offs", "loss scaling", "effective batch size"]
   understanding: "The practical scaling tricks that turn a 'too big to fit' run into one you can actually do."
   difficulty: 2
-  guides: []
-  gap: true
+  guides:
+    - title: "Mixed Precision Training from Scratch"
+      url: "https://tspeterkim.github.io/posts/mixed-precision-from-scratch"
+      author: "Taeksang Peter Kim"
+      kind: written
+      language: "Mixed"
+      cost: free
+      from_scratch_evidence: "Goes below `torch.cuda.amp.autocast` to implement the three primitives — loss scaling, FP32 master weights, and mixed-precision matmul — with custom CUDA kernels via cuBLAS to reveal what AMP actually does."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: sft
   category: training
@@ -127,5 +135,22 @@
   teaches: ["policy gradients", "KL regularization", "advantage estimation"]
   understanding: "What the 'RL' in RLHF actually does, and where it differs from classic RL."
   difficulty: 3
-  guides: []
-  gap: true
+  guides:
+    - title: "lm-human-preference-details (PyTorch reproduction of OpenAI's RLHF)"
+      url: "https://github.com/vwxyzjn/lm-human-preference-details"
+      author: "Shengyi Costa Huang"
+      kind: code
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Self-described as a 'simple-to-read and minimal reference implementation of RLHF' in PyTorch — reproduces OpenAI's 2019 `lm-human-preferences` (TF1) including the PPO loop, reward model, advantage estimation, and KL penalty."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
+    - title: "The N Implementation Details of RLHF with PPO"
+      url: "https://huggingface.co/blog/the_n_implementation_details_of_rlhf_with_ppo"
+      author: "Shengyi Costa Huang, Tianlin Liu, Leandro von Werra (Hugging Face)"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Companion blog to the `lm-human-preference-details` repo above — walks through 20+ implementation details (padding, whitening, position IDs, custom Adam) that make a from-scratch PPO RLHF run actually work."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"

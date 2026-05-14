@@ -15,11 +15,11 @@ primarily library configuration or product/framework wrapping.
 ## Summary
 
 - **40** build targets across 8 categories.
-- **41** verified guides accepted across **26** targets.
-- **14** targets ship as open `gap` (no good public from-scratch guide
+- **45** verified guides accepted across **29** targets.
+- **11** targets ship as open `gap` (no good public from-scratch guide
   found). Of these, **4** are planned `originals/` (reward-model,
   agent-memory, multi-agent, calibration-hallucination).
-- **5** guides were considered and rejected (reasons logged below).
+- **6** guides were considered and rejected (reasons logged below).
 - **1** mid-research scope change: KV cache was originally tier-1 of the
   `originals/` plan; verification surfaced two excellent existing
   from-scratch guides, so KV cache now ships with curated links instead.
@@ -34,6 +34,27 @@ Zero entries are unverified at launch.
 - ✓ Replaced **mixture-of-experts** primary with **st-moe-pytorch** (also
   lucidrains) — the author's own recommended successor. Kept the older
   repo as a secondary "stepping stone" entry with a clear note.
+
+### Additions from the post-Phase-6 gap-filling pass (2026-05-14)
+
+After Phase 6 concluded, ran one more research sweep against the 10
+remaining open gaps. Three gaps yielded genuine, verified from-scratch
+guides:
+
+- ✓ Added **Maxime Labonne — Decoding Strategies in LLMs** (sampling).
+  Hand-written `greedy_search`, `beam_search`, `top_k_sampling`,
+  `nucleus_sampling` over raw logits — no `model.generate` shortcut.
+- ✓ Added **Taeksang Peter Kim — Mixed Precision Training from Scratch**
+  (mixed-precision). Goes below `torch.cuda.amp.autocast` to implement
+  loss scaling, FP32 master weights, and mixed-precision matmul with
+  custom cuBLAS kernels — reveals what AMP actually does.
+- ✓ Added **vwxyzjn/lm-human-preference-details** + the HF blog
+  "N Implementation Details of RLHF with PPO" (ppo-grpo). The repo is a
+  self-described "simple-to-read and minimal reference implementation"
+  of PPO RLHF in PyTorch; the blog explains the 20+ details that make a
+  from-scratch run actually work.
+
+Seven gaps remained genuinely empty after this sweep and stay marked.
 
 ---
 
@@ -203,18 +224,19 @@ Zero entries are unverified at launch.
 - ✗ **Various Adam-from-scratch Medium articles**
   Reason: labml.ai's annotated Adam is the authoritative, well-maintained reference for the same content. One canonical link beats three lossy reposts.
 
+- ✗ **Amit Chaudhary — The Anatomy of Tool Calling** (for `tool-layer`)
+  https://amitness.com/posts/function-calling-schema/
+  Reason: covers function-to-JSON-schema conversion well but stops short of dispatch, runtime validation, and error recovery. The `tool-layer` target requires the full end-to-end dispatcher — partial coverage would mislead a learner. Kept as a gap.
+
 ---
 
-## Open gaps (14 targets)
+## Open gaps (11 targets)
 
 Shipped as `gap: true` — readers see a marked open slot rather than a weak link.
 
 - `embedding-layer` (Foundations)
 - `lr-schedule` (Training)
-- `mixed-precision` (Training)
 - `reward-model` (Training) — `originals/reward-model.md` planned
-- `ppo-grpo` (Training)
-- `sampling` (Inference)
 - `quantization` (Inference)
 - `hybrid-search` (Retrieval)
 - `reranker` (Retrieval)
@@ -224,7 +246,7 @@ Shipped as `gap: true` — readers see a marked open slot rather than a weak lin
 - `eval-harness` (Evaluation)
 - `calibration-hallucination` (Evaluation) — `originals/calibration-hallucination.md` planned
 
-These are converted to "wanted build targets" issues in Phase 6.
+These are converted to "wanted build targets" issues — see `PLANNING/06_review.md`.
 
 ---
 

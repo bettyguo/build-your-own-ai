@@ -153,17 +153,18 @@ the relevant index entry.
 |---|---|---|---|
 | 1 | `embedding-layer` | Foundations | Tied vs untied embeddings, comparison plot of L2 norms, training a tiny token2vec end to end. |
 | 2 | `lr-schedule` | Training | Warmup + cosine on a small run, with and without warmup, with the loss-curve comparison plot. |
-| 3 | `mixed-precision` | Training | Hand-written FP16 forward + FP32 master + dynamic loss scaling + gradient accumulation. Compare memory and throughput against FP32. |
-| 4 | `ppo-grpo` | Training | A miniature PPO loop on a small policy with the KL penalty made explicit, applied to one prompt at a time. |
-| 5 | `sampling` | Inference | Standalone module: greedy / temperature / top-k / top-p / typical / mirostat, with side-by-side outputs on the same prompt. |
-| 6 | `quantization` | Inference | A from-scratch INT8 / INT4 PTQ pipeline: per-channel scales, outlier handling, accuracy vs throughput measurement. (NOT a `bitsandbytes` / `auto-gptq` tutorial.) |
-| 7 | `hybrid-search` | Retrieval | BM25 + dense fused with Reciprocal Rank Fusion and learned weighting, evaluated on a small relevance set. |
-| 8 | `reranker` | Retrieval | A cross-encoder trained from scratch on a small relevance dataset. Two-stage retrieval pipeline with the cost/quality trade-off measured. |
-| 9 | `tool-layer` | Agents | A schema-validated tool dispatcher: JSON-Schema, argument validation, error recovery — independent of any specific agent loop. |
-| 10 | `eval-harness` | Evaluation | A pluggable task runner in ~200 lines: task abstraction, prompt template, scoring function, reproducibility seed. (NOT a `lm-evaluation-harness` tutorial.) |
+| 3 | `quantization` | Inference | A from-scratch INT8 / INT4 PTQ pipeline: per-channel scales, outlier handling, accuracy vs throughput measurement. (NOT a `bitsandbytes` / `auto-gptq` tutorial.) |
+| 4 | `hybrid-search` | Retrieval | BM25 + dense fused with Reciprocal Rank Fusion and learned weighting, evaluated on a small relevance set. |
+| 5 | `reranker` | Retrieval | A cross-encoder trained from scratch on a small relevance dataset. Two-stage retrieval pipeline with the cost/quality trade-off measured. |
+| 6 | `tool-layer` | Agents | A schema-validated tool dispatcher: JSON-Schema, argument validation, error recovery — independent of any specific agent loop. |
+| 7 | `eval-harness` | Evaluation | A pluggable task runner in ~200 lines: task abstraction, prompt template, scoring function, reproducibility seed. (NOT a `lm-evaluation-harness` tutorial.) |
 
 The four originals at launch cover the other four gaps (reward-model,
 agent-memory, multi-agent, calibration-hallucination).
+
+A post-Phase-6 gap-filling sweep filled three additional gaps with
+verified guides (`sampling`, `mixed-precision`, `ppo-grpo`) — see the
+verification log for the additions and the rationale.
 
 ---
 
@@ -186,13 +187,19 @@ agent-memory, multi-agent, calibration-hallucination).
 | | |
 |---|---|
 | Build targets | 40 |
-| Verified guides | **41** (up from 39 after this review) |
-| Open gaps | 14 (4 with originals shipped, 10 as wanted-issues) |
+| Verified guides | **41** (up from 39 after this review; **45** after the post-Phase-6 gap-filling sweep) |
+| Open gaps | 14 after Phase 6 → **11** after gap-filling sweep |
 | Originals | 4 |
-| URLs link-checked live | 53 of 53 (3 sibling-repo placeholders intentionally ignored) |
-| Rejected guides | 5 (documented in `PLANNING/03_verification_log.md`) |
+| URLs link-checked live | 53/53 after Phase 6 → **57/57** after gap-filling sweep (3 sibling-repo placeholders intentionally ignored throughout) |
+| Rejected guides | 5 after Phase 6 → **6** (added the rejection of Amit Chaudhary's tool-calling article for being partial) |
 | Fixes applied during this review | 2 entry-level (MoE / encoder-LM) + 1 README footer pointer |
 
 The hostile-review pass made the index *better*, not just *defended*. It
 upgraded one entry (MoE), broadened another (encoder-LM), and surfaced
 the curation paper trail to readers (verification-log pointer in README).
+
+The subsequent gap-filling sweep added 4 more verified guides across 3
+gap targets, taking total guide count from 41 → 45 and open gaps from
+14 → 11. Importantly, when one more candidate (Amit Chaudhary's tool
+calling article) was found to only partially cover its target, it was
+rejected rather than padded in — the bar held.

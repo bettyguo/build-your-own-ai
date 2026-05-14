@@ -8,8 +8,16 @@
   teaches: ["argmax vs sampling", "temperature scaling", "nucleus sampling"]
   understanding: "Why the same model can sound creative or robotic depending entirely on three lines of decoding code."
   difficulty: 1
-  guides: []
-  gap: true
+  guides:
+    - title: "Decoding Strategies in Large Language Models"
+      url: "https://huggingface.co/blog/mlabonne/decoding-strategies"
+      author: "Maxime Labonne"
+      kind: written
+      language: "Python"
+      cost: free
+      from_scratch_evidence: "Hand-written `greedy_search`, `beam_search`, `top_k_sampling`, `nucleus_sampling` functions — each is a few lines of PyTorch over the raw logits, no `model.generate` shortcut. Companion notebook with decision-tree visualizations."
+      verified_on: 2026-05-14
+      verifier: "bettyguo"
 
 - id: kv-cache
   category: inference

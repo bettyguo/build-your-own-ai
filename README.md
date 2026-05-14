@@ -191,7 +191,7 @@ _How models learn._
 
 **What you'll understand after:** The practical scaling tricks that turn a 'too big to fit' run into one you can actually do.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Mixed**: _Mixed Precision Training from Scratch_](https://tspeterkim.github.io/posts/mixed-precision-from-scratch) — Taeksang Peter Kim · written · free
 
 #### Supervised fine-tuning (SFT) <sub>★★☆ · afternoon</sub>
 
@@ -223,7 +223,8 @@ _How models learn._
 
 **What you'll understand after:** What the 'RL' in RLHF actually does, and where it differs from classic RL.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _lm-human-preference-details (PyTorch reproduction of OpenAI's RLHF)_](https://github.com/vwxyzjn/lm-human-preference-details) — Shengyi Costa Huang · code · free
+- [**Python**: _The N Implementation Details of RLHF with PPO_](https://huggingface.co/blog/the_n_implementation_details_of_rlhf_with_ppo) — Shengyi Costa Huang, Tianlin Liu, Leandro von Werra (Hugging Face) · written · free
 
 ### Inference
 _Making a trained model useful._
@@ -234,7 +235,7 @@ _Making a trained model useful._
 
 **What you'll understand after:** Why the same model can sound creative or robotic depending entirely on three lines of decoding code.
 
-> _Open gap — no good from-scratch guide verified yet. Contributions welcome (see `CONTRIBUTING.md`)._
+- [**Python**: _Decoding Strategies in Large Language Models_](https://huggingface.co/blog/mlabonne/decoding-strategies) — Maxime Labonne · written · free
 
 #### KV cache <sub>★★☆ · afternoon</sub>
 
@@ -463,8 +464,8 @@ tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scrat
 
 - Scheduled weekly link-check via CI.
 - Quarterly audit of the verification log.
-- Currently: **40 build targets** · **41 guides** ·
-  **4 originals** · **14 open gaps**.
+- Currently: **40 build targets** · **45 guides** ·
+  **4 originals** · **11 open gaps**.
 
 The full curation paper trail — every accepted and rejected guide with
 evidence — lives in [`PLANNING/03_verification_log.md`](PLANNING/03_verification_log.md).
