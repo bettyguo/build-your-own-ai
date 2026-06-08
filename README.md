@@ -12,7 +12,6 @@
   <img src="https://img.shields.io/badge/targets-62-informational.svg" alt="target count">
   <img src="https://img.shields.io/badge/guides-80-informational.svg" alt="guide count">
   <img src="https://img.shields.io/badge/originals-9-purple.svg" alt="originals">
-  <img src="https://img.shields.io/badge/links-100%25%20live-brightgreen.svg" alt="link health">
 </p>
 
 ---
@@ -648,26 +647,15 @@ tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scrat
 
 ## Maintenance
 
-- Scheduled weekly link-check via CI.
+- Scheduled link-check via CI.
 - Quarterly audit of the verification log.
 - Currently: **62 build targets** · **80 guides** ·
   **9 originals** · **9 open gaps**.
 
-The full curation paper trail — every accepted and rejected guide with
+The full curation trail — every accepted and rejected guide with
 evidence — lives in [`PLANNING/03_verification_log.md`](PLANNING/03_verification_log.md).
 
 ## License
 
 Content: [CC-BY-4.0](LICENSE) · Code: [MIT](LICENSE).
 
-## Curator
-
-**Betty Guo** ([Dongxin Guo](https://bettyguo.github.io/)), 
-PhD Candidate in Computer Science at The University of Hong Kong.
-Advised by [Prof. Siu-Ming Yiu](https://www.cs.hku.hk/people/academic-staff/smyiu).
-
-## Star history
-
-<a href="https://star-history.com/#bettyguo/build-your-own-ai&Date">
-  <img src="https://api.star-history.com/svg?repos=bettyguo/build-your-own-ai&type=Date" alt="Star history" width="600">
-</a>
