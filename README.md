@@ -11,7 +11,6 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-green.svg" alt="code license"></a>
   <img src="https://img.shields.io/badge/targets-62-informational.svg" alt="target count">
   <img src="https://img.shields.io/badge/guides-80-informational.svg" alt="guide count">
-  <img src="https://img.shields.io/badge/originals-9-purple.svg" alt="originals">
 </p>
 
 ---
@@ -644,16 +643,6 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md). Every new entry requires:
 
 Spotted a guide that's mislabeled as "from scratch" but actually a framework
 tutorial? Open a [not-from-scratch report](.github/ISSUE_TEMPLATE/not-from-scratch.md).
-
-## Maintenance
-
-- Scheduled link-check via CI.
-- Quarterly audit of the verification log.
-- Currently: **62 build targets** · **80 guides** ·
-  **9 originals** · **9 open gaps**.
-
-The full curation trail — every accepted and rejected guide with
-evidence — lives in [`PLANNING/03_verification_log.md`](PLANNING/03_verification_log.md).
 
 ## License
 
